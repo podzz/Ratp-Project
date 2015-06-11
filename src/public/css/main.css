@@ -246,4 +246,6 @@ i {
 
 .station-number {
     padding: 3px;
+    width: 60px;
+    height: 60px;
 }

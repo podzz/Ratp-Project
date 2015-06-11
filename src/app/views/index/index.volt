@@ -110,7 +110,7 @@
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
             var lines_img = "";
             item.lines.forEach(function(entry) {
-                lines_img += "<img class='station-number' src='public/img/m" + entry + ".png'/>";
+                lines_img += "<img class='station-number' src='public/img/M_" + entry + ".png'/>";
             });
 
             return $("<li>")

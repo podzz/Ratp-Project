@@ -17,6 +17,6 @@ with codecs.open('data.sql', 'w', encoding='utf8') as dataFile:
     with codecs.open('data/line_station_utf8.csv', 'r') as lineFile:
         readerCsv = csv.reader(lineFile, delimiter=';')
         for row in readerCsv:
-        	dataFile.write('INSERT INTO line_station(id_line, id_station) VALUES (\'' + row[0] + '\',\'' + row[1] + '\');\n')
+        	dataFile.write('INSERT INTO line_station(id_line, id_station) VALUES (\'' + str(int(row[0]) - 1) + '\',\'' + row[1] + '\');\n')
 
 

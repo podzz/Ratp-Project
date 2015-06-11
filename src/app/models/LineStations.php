@@ -34,8 +34,8 @@ class LineStations extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->belongsTo("id_line","Lines","id_line");
-        $this->belongsTo("id_station","Stations","id_station");
+        $this->hasOne("id_line","Lines","id_line");
+        $this->hasOne("id_station","Stations","id_station");
     }
 
     /**
