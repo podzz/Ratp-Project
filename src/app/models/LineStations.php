@@ -15,11 +15,7 @@ class LineStations extends \Phalcon\Mvc\Model
      */
     public $id_line;
 
-    /**
-     * Validations and business logic
-     *
-     * @return boolean
-     */
+
     public function validation()
     {
         if ($this->validationHasFailed() == true) {
@@ -36,6 +32,12 @@ class LineStations extends \Phalcon\Mvc\Model
     {
         $this->hasOne("id_line","Lines","id_line");
         $this->hasOne("id_station","Stations","id_station");
+    }
+
+    public function afterFetch()
+    {
+        $this->stations;
+        $this->lines;
     }
 
     /**

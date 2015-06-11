@@ -35,8 +35,6 @@ class ApiController extends \Phalcon\Mvc\Controller
         $stations = LineStations::find();
         $rows = array();
         foreach ($stations as $station) {
-            $station->stations;
-            $station->lines;
             array_push($rows, $station);
         }
         echo json_encode($rows);

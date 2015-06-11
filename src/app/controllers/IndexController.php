@@ -8,6 +8,13 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
+        $lineStations = LineStations::find();
+
+
+        foreach($lineStations as $ls)
+        {
+            
+        }
         $station1 = new StationFront();
         $station1->name = "Bonne nouvelle";
         $station1->lines = array(8,9);
