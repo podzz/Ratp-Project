@@ -57,7 +57,6 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
-        $this->hasMany('id', 'Comsumption', 'user', array('alias' => 'Comsumption'));
     }
 
     /**

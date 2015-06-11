@@ -1,19 +1,25 @@
 <?php
 
-class Stations extends \Phalcon\Mvc\Model
+class Lines extends \Phalcon\Mvc\Model
 {
 
     /**
      *
      * @var integer
      */
-    public $id_station;
+    public $id_line;
 
     /**
      *
      * @var string
      */
-    public $station_name;
+    public $line_number;
+
+    /**
+     *
+     * @var string
+     */
+    public $line_name;
 
     /**
      * Validations and business logic
@@ -34,6 +40,7 @@ class Stations extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        $this->hasMany('id', 'Comsumption', 'user', array('alias' => 'Comsumption'));
     }
 
     /**
@@ -43,7 +50,7 @@ class Stations extends \Phalcon\Mvc\Model
      */
     public function getSource()
     {
-        return 'station';
+        return 'line';
     }
 
     /**
