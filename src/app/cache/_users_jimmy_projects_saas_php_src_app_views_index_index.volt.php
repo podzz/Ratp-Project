@@ -89,7 +89,7 @@
         // Station declaration
         var stations = [<?php $v37310255246903341671iterator = $stations; $v37310255246903341671incr = 0; $v37310255246903341671loop = new stdClass(); $v37310255246903341671loop->length = count($v37310255246903341671iterator); $v37310255246903341671loop->index = 1; $v37310255246903341671loop->index0 = 1; $v37310255246903341671loop->revindex = $v37310255246903341671loop->length; $v37310255246903341671loop->revindex0 = $v37310255246903341671loop->length - 1; ?><?php foreach ($v37310255246903341671iterator as $station) { ?><?php $v37310255246903341671loop->first = ($v37310255246903341671incr == 0); $v37310255246903341671loop->index = $v37310255246903341671incr + 1; $v37310255246903341671loop->index0 = $v37310255246903341671incr; $v37310255246903341671loop->revindex = $v37310255246903341671loop->length - $v37310255246903341671incr; $v37310255246903341671loop->revindex0 = $v37310255246903341671loop->length - ($v37310255246903341671incr + 1); $v37310255246903341671loop->last = ($v37310255246903341671incr == ($v37310255246903341671loop->length - 1)); ?>
             {
-                value: '<?php echo $station->name; ?>',
+                value: "<?php echo $station->name; ?>",
                 lines: [<?php $v37310255246903341672iterator = $station->lines; $v37310255246903341672incr = 0; $v37310255246903341672loop = new stdClass(); $v37310255246903341672loop->length = count($v37310255246903341672iterator); $v37310255246903341672loop->index = 1; $v37310255246903341672loop->index0 = 1; $v37310255246903341672loop->revindex = $v37310255246903341672loop->length; $v37310255246903341672loop->revindex0 = $v37310255246903341672loop->length - 1; ?><?php foreach ($v37310255246903341672iterator as $line) { ?><?php $v37310255246903341672loop->first = ($v37310255246903341672incr == 0); $v37310255246903341672loop->index = $v37310255246903341672incr + 1; $v37310255246903341672loop->index0 = $v37310255246903341672incr; $v37310255246903341672loop->revindex = $v37310255246903341672loop->length - $v37310255246903341672incr; $v37310255246903341672loop->revindex0 = $v37310255246903341672loop->length - ($v37310255246903341672incr + 1); $v37310255246903341672loop->last = ($v37310255246903341672incr == ($v37310255246903341672loop->length - 1)); ?><?php echo $line; ?><?php if ((!$v37310255246903341672loop->last)) { ?>,<?php } ?><?php $v37310255246903341672incr++; } ?>]
             }
             <?php if ((!$v37310255246903341671loop->last)) { ?>,<?php } ?>
@@ -98,7 +98,11 @@
         // Autocomplete initialization and overriding rendering template
         $("#searchBar").autocomplete({
             minLength: 0,
-            source: stations,
+            source: function(request, response) {
+            var results = $.ui.autocomplete.filter(stations, request.term);
+
+            response(results.slice(0, 4));
+            },
             focus: function(event, ui) {
                 $("#searchBar").val(ui.item.label);
                 return false;
@@ -110,7 +114,7 @@
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
             var lines_img = "";
             item.lines.forEach(function(entry) {
-                lines_img += "<img class='station-number' src='public/img/m" + entry + ".png'/>";
+                lines_img += "<img class='station-number' src='public/img/M_" + entry + ".png'/>";
             });
 
             return $("<li>")

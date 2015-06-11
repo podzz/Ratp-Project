@@ -89,7 +89,7 @@
         // Station declaration
         var stations = [{% for station in stations %}
             {
-                value: '{{ station.name }}',
+                value: "{{ station.name }}",
                 lines: [{% for line in station.lines %}{{ line }}{% if (not loop.last) %},{% endif %}{% endfor %}]
             }
             {% if (not loop.last) %},{% endif %}
@@ -98,7 +98,11 @@
         // Autocomplete initialization and overriding rendering template
         $("#searchBar").autocomplete({
             minLength: 0,
-            source: stations,
+            source: function(request, response) {
+            var results = $.ui.autocomplete.filter(stations, request.term);
+
+            response(results.slice(0, 4));
+            },
             focus: function(event, ui) {
                 $("#searchBar").val(ui.item.label);
                 return false;

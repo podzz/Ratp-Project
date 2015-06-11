@@ -3,10 +3,9 @@
  * Created by PhpStorm.
  * User: Jimmy
  * Date: 11/06/15
- * Time: 14:50
+ * Time: 23:03
  */
 
-class StationFront {
-    public $name;
-    public $lines;
+class LineViewModel {
+    public $number;
 }
