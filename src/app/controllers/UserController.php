@@ -6,7 +6,6 @@ class UserController extends \Phalcon\Mvc\Controller
     public function indexAction()
     {
         $this->view->users = Users::find();
-        mail("jlanclum@gmail.com","My subject","toto");
     }
 
     public function showAction($userId)
