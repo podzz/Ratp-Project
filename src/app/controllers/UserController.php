@@ -16,7 +16,7 @@ class UserController extends \Phalcon\Mvc\Controller
     public function tokenizeAction($userId)
     {
         $user = Users::findFirst($userId);
-        $user->token = rand(100000,9999999);
+        $user->token = rand(100000, 9999999);
         $user->save();
 
         return $this->dispatcher->forward(array(
