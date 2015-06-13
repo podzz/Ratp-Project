@@ -36,10 +36,10 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="login">Déjà membre ?</a></li>
+                <li>{{ link_to('login', 'Déjà membre ?') }}</li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="user/create">Créer un compte</a></li>
+                <li>{{ link_to('user/create', 'Créer un compte') }}</li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -48,7 +48,7 @@
 <div id="headerwrap">
     <div class="container">
         <div class="row">
-            <div class="col-lg-6">
+            <div class="search-container col-lg-6" style="display: none;">
                 <h1>Recherchez votre<br>
                     station</h1>
                 <form class="form-inline" role="form">
@@ -62,7 +62,7 @@
             </div><!-- /col-lg-6 -->
             <div class="col-lg-6">
                 <img class="img-responsive"
-                     src="public/img/ipad-hand.png" alt="">
+                     src="public/img/ipad-hand.png" alt="" style="display: none;">
             </div><!-- /col-lg-6 -->
 
         </div><!-- /row -->
@@ -74,18 +74,14 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h4 class="modal-title">Se connecter</h4>
+                <h4 class="modal-title">Connectez-vous pour profiter de toutes les fonctionnalités !</h4>
             </div>
-            <form method="post" action="login">
             <div class="modal-body">
-                <span>Adresse email</span><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
-                <span>Mot de passe</span><input class="form-control" name="password" type="password" placeholder="********">
+                Les horaires à cette station vous intéressent ?<br><br> {{ link_to('login', 'Connectez-vous') }} ou {{ link_to('user/create', 'créez un compte') }} pour en profiter dès maintenant !
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
-                <input type="submit" class="btn btn-primary" value="Connexion">
             </div>
-            </form>
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
@@ -111,14 +107,14 @@
             source: function(request, response) {
             var results = $.ui.autocomplete.filter(stations, request.term);
 
-            response(results.slice(0, 4));
+            response(results.slice(0, 5));
             },
             focus: function(event, ui) {
                 $("#searchBar").val(ui.item.label);
                 return false;
             },
             select: function(event, ui) {
-                /* Todo : Call the API and display results */
+                $('#myModal').modal(true);
                 return false;
             }
         }).data("ui-autocomplete")._renderItem = function(ul, item) {
@@ -128,10 +124,13 @@
             });
 
             return $("<li>")
-                    .append("<a class='autocomplete-suggestion autocomplete-selected'>" + lines_img + item.value)
+                    .append("<a class='autocomplete-suggestion autocomplete-selected'>" + lines_img + ' ' + item.value)
                     .appendTo(ul);
         };
 
+        $('.search-container').fadeIn('slow', function() {
+            $('img').fadeIn('slow');
+        });
     });
 </script>
 </body>

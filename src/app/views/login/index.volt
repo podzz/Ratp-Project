@@ -46,7 +46,7 @@
     </div>
 </header>
 <div id="headerwrap">
-<form method="post" action="login">
+<form method="post" action="login" style="display: none;">
     <span>Adresse email</span><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
     <span>Mot de passe</span><input class="form-control" name="password" type="password" placeholder="********">
     <input type="submit" class="btn btn-success" value="Connexion">
@@ -55,5 +55,11 @@
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('form').fadeIn('slow');
+
+    });
+</script>
 </body>
 </html>

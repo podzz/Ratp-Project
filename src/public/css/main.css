@@ -239,8 +239,8 @@ i {
 
 .station-number {
     padding: 3px;
-    width: 60px;
-    height: 60px;
+    max-width: 40px;
+    max-height: 40px;
 }
 
 .modal-body {
