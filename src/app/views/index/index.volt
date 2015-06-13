@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -43,11 +43,14 @@
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Déjà membre ?</a></li>
+                <li><a href="#" data-toggle="modal" data-target="#myModal" id="connect">Déjà membre ?</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Mot de passe
+                <li><a href="#" id="forgetPassword">Mot de passe
                         oublié</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="#">Créer un compte</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -77,12 +80,30 @@
     </div><!-- /container -->
 </div><!-- /headerwrap -->
 
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster
--->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Se connecter</h4>
+            </div>
+            <form method="post" action="/login">
+            <div class="modal-body">
+                <span>Adresse email</span><input class="form-control" type="email" placeholder="exemple@domain.com"><hr>
+                <span>Mot de passe</span><input class="form-control" type="password" placeholder="********">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+                <input type="submit" class="btn btn-primary" value="Connexion">
+            </div>
+            </form>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
@@ -122,6 +143,9 @@
                     .appendTo(ul);
         };
 
+        $('#myModal').on('hidden.bs.modal', function (event) {
+            document.getElementById("searchBar").focus();
+        });
 
     });
 </script>

@@ -153,13 +153,6 @@ i {
     background-color: #246593;
 }
 
-/*.autocomplete-suggestions { border: 1px solid; background: #fff; cursor: default; overflow: auto; color: #080808 }
-.autocomplete-suggestion { padding: 10px 5px; font-size: 1.2em; white-space: nowrap; overflow: hidden; }
-
-.autocomplete-suggestions strong { font-weight: normal; color: #000; }
-*/
-
-
 .ui-autocomplete {
     position: absolute;
     top: 100%;
@@ -249,3 +242,16 @@ i {
     width: 60px;
     height: 60px;
 }
+
+.modal-body {
+    text-align: center;
+}
+.modal-body input {
+    margin: auto;
+}
+
+hr {
+    max-width: 70%;
+    margin: 20px auto;
+}
+
