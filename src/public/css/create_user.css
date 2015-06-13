@@ -1,0 +1,36 @@
+input
+{
+    margin: 30px auto 50px auto;
+}
+
+form
+{
+    text-align: center;
+    color: white;
+    margin: auto;
+    vertical-align: middle;
+}
+
+hr {
+    max-width: 50%;
+    margin: 20px auto;
+}
+
+
+h3
+{
+    color: white;
+}
+
+#headerwrap
+{
+    text-align: center;
+    padding-top: 40px;
+    margin: 20px;
+}
+
+table
+{
+    max-width: 50%;
+    margin: auto;
+}
