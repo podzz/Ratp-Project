@@ -10,19 +10,14 @@
 
     <title>Reste Assis T'es Posé</title>
 
-    <!-- Bootstrap core CSS -->
     <link href="public/css/bootstrap.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
     <link href="public/css/main.css" rel="stylesheet">
 
-    <!-- Fonts from Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
           rel='stylesheet' type='text/css'>
 
-    <link
-            rel="stylesheet"
-            href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
+    <link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
 </head>
 
 <body>
@@ -37,20 +32,14 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand"
-               href="#"><b>Reste Assis T'es
-                    Posé</b></a>
+            <a class="navbar-brand" href="index"><b>Reste Assis T'es Posé</b></a>
         </div>
         <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" data-toggle="modal" data-target="#myModal" id="connect">Déjà membre ?</a></li>
+                <li><a href="login">Déjà membre ?</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#" id="forgetPassword">Mot de passe
-                        oublié</a></li>
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Créer un compte</a></li>
+                <li><a href="user/create">Créer un compte</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
@@ -87,10 +76,10 @@
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                 <h4 class="modal-title">Se connecter</h4>
             </div>
-            <form method="post" action="/login">
+            <form method="post" action="login">
             <div class="modal-body">
-                <span>Adresse email</span><input class="form-control" type="email" placeholder="exemple@domain.com"><hr>
-                <span>Mot de passe</span><input class="form-control" type="password" placeholder="********">
+                <span>Adresse email</span><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
+                <span>Mot de passe</span><input class="form-control" name="password" type="password" placeholder="********">
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
@@ -142,10 +131,6 @@
                     .append("<a class='autocomplete-suggestion autocomplete-selected'>" + lines_img + item.value)
                     .appendTo(ul);
         };
-
-        $('#myModal').on('hidden.bs.modal', function (event) {
-            document.getElementById("searchBar").focus();
-        });
 
     });
 </script>

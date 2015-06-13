@@ -15,7 +15,8 @@
 
     <!-- Custom styles for this template -->
     <link href="public/css/main.css" rel="stylesheet">
-
+    <!-- Custom styles for this template -->
+    <link href="public/css/login.css" rel="stylesheet">
     <!-- Fonts from Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
           rel='stylesheet' type='text/css'>
@@ -30,26 +31,26 @@
 <header class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle"
-                    data-toggle="collapse"
-                    data-target=".navbar-collapse">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#"><b>Reste Assis T'es Posé</b></a>
+            <a class="navbar-brand" href="index"><b>Reste Assis T'es Posé</b></a>
         </div>
-         <ul class="nav navbar-nav navbar-right">
-                <li><a href="login">Déjà membre ?</a></li>
-            </ul>
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="user/create">Créer un compte</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>
 </header>
-<div id="content">
-
+<div id="headerwrap">
+<form method="post" action="login">
+    <span>Adresse email</span><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
+    <span>Mot de passe</span><input class="form-control" name="password" type="password" placeholder="********">
+    <input type="submit" class="btn btn-success" value="Connexion">
+</form>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
