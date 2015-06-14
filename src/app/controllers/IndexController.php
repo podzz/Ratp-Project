@@ -13,7 +13,5 @@ class IndexController extends ControllerBase
 
         $this->view->stations = $stationsViewModel;
     }
-
-
 }
 
