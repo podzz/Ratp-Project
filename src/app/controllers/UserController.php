@@ -16,7 +16,11 @@ class UserController extends \Phalcon\Mvc\Controller
         $oa->init();
         $oa->insertUser("testclient", "testpass", "http://fake/");
     }
-
+    public function testAction()
+    {
+        $oa = new Oauth();
+        $oa->verifyRequest();
+    }
     public function createAction()
     {
         if ($this->request->isPost()) {
