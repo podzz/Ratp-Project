@@ -2,6 +2,7 @@
 
 use Phalcon\Http\Request;
 use Phalcon\Http\Response;
+require_once __DIR__.'./oauth.php';
 
 class LoginController extends ControllerBase
 {
@@ -12,7 +13,7 @@ class LoginController extends ControllerBase
 
             $email = $this->request->getPost("email");
             $pass = $this->request->getPost("password");
-            print_r($this->request->getPost());
+
             $user = Users::findFirstByEmail($email);
             if ($user) {
                 if ($this->security->checkHash($pass, $user->password)) {
@@ -22,6 +23,11 @@ class LoginController extends ControllerBase
 
             // Or nah
         }
+    }
+
+    public function oauthAction()
+    {
+
     }
 
 }
