@@ -6,12 +6,12 @@ INSERT INTO line(id_line, line_number, line_name) VALUES ('3','13',"(Saint-Denis
 INSERT INTO line(id_line, line_number, line_name) VALUES ('4','14',"(Olympiades/Saint-Lazare)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('5','1',"(La Défense/Château de Vincennes)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('6','2',"(Porte Dauphine (Maréchal de Lattre de Ta/Nation)");
-INSERT INTO line(id_line, line_number, line_name) VALUES ('7','3B',"(Gambetta/Porte des Lilas)");
+INSERT INTO line(id_line, line_number, line_name) VALUES ('7','3bis',"(Gambetta/Porte des Lilas)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('8','3',"(Pont de Levallois - Bécon/Gallieni (Parc de Bagnolet))");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('9','4',"(Mairie de Montrouge/Porte de Clignancourt)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('10','5',"(Place d'Italie/Bobigny - Pablo Picasso)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('11','6',"(Charles de Gaulle - Etoile/Nation)");
-INSERT INTO line(id_line, line_number, line_name) VALUES ('12','7B',"(Louis Blanc/Pré-Saint-Gervais)");
+INSERT INTO line(id_line, line_number, line_name) VALUES ('12','7bis',"(Louis Blanc/Pré-Saint-Gervais)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('13','7',"(Villejuif - Louis Aragon / Mairie d'Ivry/La Courneuve - 8 mai 1945)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('14','8',"(Pointe du Lac/Balard)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('15','9',"(Mairie de Montreuil/Pont de Sèvres)");

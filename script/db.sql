@@ -26,13 +26,13 @@ FOREIGN KEY (offer) REFERENCES offers(id)
 
 CREATE TABLE line (
 id_line INT(6) UNSIGNED PRIMARY KEY,
-line_number VARCHAR(3) NOT NULL,
-line_name VARCHAR(50) NOT NULL
+line_number VARCHAR(4) NOT NULL,
+line_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE station (
 id_station INT(6) UNSIGNED PRIMARY KEY,
-station_name VARCHAR(50) NOT NULL
+station_name VARCHAR(100) NOT NULL
 );
 
 CREATE TABLE line_station(
@@ -41,3 +41,5 @@ id_station INT(6) UNSIGNED NOT NULL,
 FOREIGN KEY(id_line) REFERENCES line(id_line),
 FOREIGN KEY(id_station) REFERENCES station(id_station)
 );
+
+ALTER SCHEMA `ratp`  DEFAULT COLLATE utf8_general_ci ;
