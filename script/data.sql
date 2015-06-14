@@ -710,3 +710,5 @@ INSERT INTO line_station(id_line, id_station) VALUES ('15','1758');
 INSERT INTO `ratp`.`offers` (`id`, `name`, `max_queries`) VALUES (1, 'Zealot', 100);
 INSERT INTO `ratp`.`offers` (`id`, `name`, `max_queries`) VALUES (2, 'Colossus', 1000);
 INSERT INTO `ratp`.`offers` (`id`, `name`, `max_queries`) VALUES (3, 'Mothership', 10000);
+
+INSERT INTO `ratp`.`users` (`id`, `email`, `password`, `token`, `offer`, `type`) VALUES (42, 'admin@admin.com', 'admin', 'supertoken', '3', '2');
