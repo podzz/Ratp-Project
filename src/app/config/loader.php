@@ -12,4 +12,8 @@ $loader->registerDirs(
         $config->application->viewModelsDir,
         $config->application->servicesDir
     )
+)->registerClasses(
+    array(
+        $config->application->oAuthLoaderFile
+    )
 )->register();

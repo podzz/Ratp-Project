@@ -6,9 +6,6 @@
  * Time: 18:38
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
-
-
 class Oauth {
     public $dsn      = 'mysql:dbname=ratp;host=localhost';
     public $username = 'root';
