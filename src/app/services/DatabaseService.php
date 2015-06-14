@@ -15,7 +15,7 @@ class DatabaseService {
             ->join('Lines', 'l.id_line = ls.id_line', 'l')
             ->columns(array('station_name', 'group_concat(line_number) as lines_num'))
             ->groupBy('Stations.id_station')
-            ->orderBy('Stations.station_name');
+            ->orderBy('Stations.station_name, line_number');
 
         return $query->getQuery()->execute();
     }

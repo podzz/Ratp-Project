@@ -50,9 +50,8 @@
 <div id="headerwrap">
     <h1>Création de compte</h1>
     <form method="post" action="create" style="display: none;">
-        <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><br>
+        <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com">
         <h3>Mot de passe</h3><input class="form-control" name="password" type="password" placeholder="********">
-        <h3>Répétez le mot  de passe</h3><input class="form-control" name="password_verif" type="password" placeholder="********"><hr>
 
         <table class="table table-bordered">
             <tr>
@@ -60,7 +59,7 @@
                 <td>
                     Zealot
                 </td>
-                <td>
+                <td style="background: #246593;">
                     Colossus
                 </td>
                 <td>
@@ -70,25 +69,25 @@
             <tr>
                 <td>Nombre d'appels à l'API (par jour)</td>
                 <td>100</td>
-                <td>1000</td>
+                <td style="background: #246593;">1000</td>
                 <td>10000</td>
             </tr>
             <tr>
                 <td>Prix</td>
                 <td>5€ / an</td>
-                <td>40€ / an</td>
+                <td style="background: #246593;">40€ / an</td>
                 <td>70€ / an</td>
             </tr>
             <tr>
                 <td></td>
                 <td>
-                    <input type="radio" name="offer" value="2">
+                    <input type="radio" name="offer" value="1">
+                </td>
+                <td style="background: #246593;">
+                    <input type="radio" name="offer" value="2"  checked>
                 </td>
                 <td>
                     <input type="radio" name="offer" value="3">
-                </td>
-                <td>
-                    <input type="radio" name="offer" value="4">
                 </td>
             </tr>
         </table>
@@ -105,7 +104,7 @@
         $('form').fadeIn('slow');
         $('input[type="radio"]').bind('click', function () {
             for (i = 2; i <= 4 ; i++)
-            $('table tr td:nth-child('+ i +')').css('background', i == this.value ? '#246593' : '#3498db');
+            $('table tr td:nth-child('+ i +')').css('background', (i - 1) == this.value ? '#246593' : '#3498db');
         });
     });
 </script>

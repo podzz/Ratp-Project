@@ -75,7 +75,9 @@ class ApiController extends \Phalcon\Mvc\Controller
 
         $rows = array();
         foreach ($stations as $station) {
-            array_push($rows, new StationsViewModel($station->station_name, explode(',', $station->lines_num)));
+            $lines = explode(',', $station->lines_num);
+            sort($lines);
+            array_push($stationsViewModel, new StationsViewModel($station->station_name, $lines));
         }
         echo json_encode($rows);
     }

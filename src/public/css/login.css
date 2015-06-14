@@ -15,3 +15,15 @@ hr {
     max-width: 50%;
     margin: 20px auto;
 }
+
+h3
+{
+    color: white;
+}
+
+#headerwrap
+{
+    text-align: center;
+    padding-top: 40px;
+    margin: 20px;
+}

@@ -9,8 +9,11 @@ class IndexController extends ControllerBase
 
         $stationsViewModel = array();
         foreach ($stations as $station)
-            array_push($stationsViewModel, new StationsViewModel($station->station_name, explode(',', $station->lines_num)));
-
+        {
+            $lines = explode(',', $station->lines_num);
+            sort($lines);
+            array_push($stationsViewModel, new StationsViewModel($station->station_name, $lines));
+        }
         $this->view->stations = $stationsViewModel;
     }
 }
