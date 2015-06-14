@@ -9,6 +9,9 @@
 
 class ApiController extends \Phalcon\Mvc\Controller
 {
+    private function verifyOauth() {
+        
+    }
 
     public function linesAction()
     {
