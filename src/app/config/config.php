@@ -8,8 +8,7 @@ return new \Phalcon\Config(array(
         'host'        => '127.0.0.1',
         'port'        => '3306',
         'username'    => 'root',
-        'password'    => 'root',
-        "port"        => 8889,
+        'password'    => 'Password',
         'dbname'      => 'ratp',
         "options" => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
@@ -25,6 +24,6 @@ return new \Phalcon\Config(array(
         'libraryDir'     => APP_PATH . '/app/library/',
         'cacheDir'       => APP_PATH . '/app/cache/',
         'servicesDir'    => APP_PATH . '/app/services/',
-        'baseUri'        => '/'
+        'baseUri'        => '/ratp/'
     )
 ));

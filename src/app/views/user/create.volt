@@ -48,6 +48,13 @@
     </div>
 </header>
 <div id="headerwrap">
+    {%  if errorMsg is defined %}
+        <div class="panel panel-default" style="margin: 20px auto; max-width: 60%; background: lightcyan;">
+            <div class="panel-body">
+                {{ errorMsg }}
+            </div>
+        </div>
+    {% endif %}
     <h1>Création de compte</h1>
     <form method="post" action="create" style="display: none;">
         <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com">

@@ -34,13 +34,16 @@ class UserController extends \Phalcon\Mvc\Controller
                     $user = new Users();
                     $user->email = $email;
                     $user->password = $pass;
-                    $user->token = com_create_guid();
+                    $user->token = uniqid();
+                    $user->offer = $offer;
+                    $user->type = 1;
                     $user->save();
                     $this->response->redirect();
                 }
             }
             else
                 $this->view->errorMsg = "Les données entrées sont invalides";
+
         }
     }
 }
