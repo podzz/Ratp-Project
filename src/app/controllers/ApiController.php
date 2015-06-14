@@ -1,11 +1,11 @@
 <?php
+
 /**
  * Created by PhpStorm.
  * User: Francois
  * Date: 11/06/15
  * Time: 19:39
  */
-
 class ApiController extends \Phalcon\Mvc\Controller
 {
 
@@ -29,15 +29,42 @@ class ApiController extends \Phalcon\Mvc\Controller
         echo json_encode($rows);
     }
 
-    public function linestationsAction()
+    /**
+     * Core route. Pick next_metro for given station
+     * @post This route can be use with POST request
+     *
+     * @param (example)
+     * JSON :
+     *          {
+     *              "linesNumber":"[1,2,3]",
+     *              "station_name":"Opéra"
+     *          }
+     */
+    public function nextMetroAction()
     {
         $this->response->setContentType('text/json');
-        $stations = LineStations::find();
-        $rows = array();
-        foreach ($stations as $station) {
-            array_push($rows, $station);
+        $input = $this->request->getJsonRawBody();
+
+        $linesNumber = json_decode($input->linesNumber);
+        $station_name = $input->station_name;
+
+        $output = array("serviceStatus" => RatpService::IsServiceUp() ? "Up" : "Down",
+            "stationName" => $station_name,
+            "requestLines" => json_decode($input->linesNumber),
+            "lines" => array());
+
+        foreach ($linesNumber as $line) {
+            $output["lines"][$line] = array();
+            array_push($output["lines"][$line], array(
+                    'Aller' => RatpService::GetNextMetro(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'A'),
+                    'Retour' => RatpService::GetNextMetro(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'R')
+                )
+            );
         }
-        echo json_encode($rows);
+
+        echo json_encode($output);
+
+
     }
 
     public function stationslinesAction()
