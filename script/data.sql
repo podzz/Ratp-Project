@@ -706,5 +706,3 @@ INSERT INTO line_station(id_line, id_station) VALUES ('15','1937');
 INSERT INTO line_station(id_line, id_station) VALUES ('15','1980');
 INSERT INTO line_station(id_line, id_station) VALUES ('15','1667');
 INSERT INTO line_station(id_line, id_station) VALUES ('15','1758');
-INSERT INTO line_station(id_line, id_station) VALUES ('16','2022');
-INSERT INTO line_station(id_line, id_station) VALUES ('16','2021');
