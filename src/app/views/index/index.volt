@@ -85,7 +85,6 @@
         </div><!-- /.modal-content -->
     </div><!-- /.modal-dialog -->
 </div><!-- /.modal -->
-
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -95,7 +94,6 @@
         // Station declaration
         var stations = [{% for station in stations %}
             {
-            /*{{ station.lines }}*/
                 value: "{{ station.name }}",
                 lines: [{% for line in station.lines %}"{{ line }}"{% if (not loop.last) %},{% endif %}{% endfor %}]
             }

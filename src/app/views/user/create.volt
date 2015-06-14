@@ -96,7 +96,6 @@
 
         <input type="submit" class="btn btn-success" value="Création du compte">
     </form>
-    {{ data }}
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
