@@ -35,7 +35,7 @@ class Oauth {
         $redirectUri    = $this->sanitize($redirectUri);
 
         $db = new PDO($this->dsn, $this->username, $this->password);
-        $db->exec('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ('.$username.', '.$secret.', '.$redirectUri.')');
+        $db->exec('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("'.$username.'", "'.$secret.'", "'.$redirectUri.'");');
 
         $result =  $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
         return $result;
