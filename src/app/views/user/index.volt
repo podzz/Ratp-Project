@@ -49,7 +49,7 @@
     </div>
 </header>
 <div id="content">
-
+Tu es co {{ user.mail }}
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

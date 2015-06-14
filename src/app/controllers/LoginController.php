@@ -14,13 +14,13 @@ class LoginController extends ControllerBase
             $pass = $this->request->getPost("password");
 
             $user = Users::findFirstByEmail($email);
-        if ($user) {
-            if ($this->security->checkHash($pass, $user->password)) {
-                //The password is valid
+            if ($user) {
+                if ($this->security->checkHash($pass, $user->password)) {
+                    // Connected
+                }
             }
-        }
 
-        //The validation has failed
+            // Or nah
         }
     }
 

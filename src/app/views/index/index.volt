@@ -95,8 +95,9 @@
         // Station declaration
         var stations = [{% for station in stations %}
             {
+            /*{{ station.lines }}*/
                 value: "{{ station.name }}",
-                lines: [{% for line in station.lines %}{{ line }}{% if (not loop.last) %},{% endif %}{% endfor %}]
+                lines: [{% for line in station.lines %}"{{ line }}"{% if (not loop.last) %},{% endif %}{% endfor %}]
             }
             {% if (not loop.last) %},{% endif %}
             {%  endfor %}];

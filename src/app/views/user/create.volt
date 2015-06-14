@@ -15,7 +15,8 @@
 
     <!-- Custom styles for this template -->
     <link href="../public/css/main.css" rel="stylesheet">
-
+    <!-- Custom styles for this template -->
+    <link href="../public/css/create_user.css" rel="stylesheet">
     <!-- Fonts from Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
           rel='stylesheet' type='text/css'>
@@ -46,9 +47,61 @@
         </div><!--/.nav-collapse -->
     </div>
 </header>
+<div id="headerwrap">
+    <h1>Création de compte</h1>
+    <form method="post" action="login" style="display: none;">
+        <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><br>
+        <h3>Mot de passe</h3><input class="form-control" name="password" type="password" placeholder="********">
+        <h3>Répétez le mot  de passe</h3><input class="form-control" name="password_verif" type="password" placeholder="********"><hr>
 
+        <table class="table table-bordered">
+            <tr>
+                <td></td>
+                <td>
+                    Zealot
+                </td>
+                <td>
+                    Colossus
+                </td>
+                <td>
+                    Mothership
+                </td>
+            </tr>
+            <tr>
+                <td>Nombre d'appels à l'API (par jour)</td>
+                <td>100</td>
+                <td>1000</td>
+                <td>10000</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="radio" name="offer" value="2">
+                </td>
+                <td>
+                    <input type="radio" name="offer" value="3">
+                </td>
+                <td>
+                    <input type="radio" name="offer" value="4">
+                </td>
+            </tr>
+        </table>
+
+
+        <input type="submit" class="btn btn-success" value="Création du compte">
+    </form>
+</div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('form').fadeIn('slow');
+        $('input[type="radio"]').bind('click', function () {
+            for (i = 2; i <= 4 ; i++)
+            $('table tr td:nth-child('+ i +')').css('background', i == this.value ? '#246593' : '#3498db');
+        });
+    });
+</script>
 </body>
 </html>
