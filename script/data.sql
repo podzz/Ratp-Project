@@ -15,8 +15,6 @@ INSERT INTO line(id_line, line_number, line_name) VALUES ('12','7bis',"(Louis Bl
 INSERT INTO line(id_line, line_number, line_name) VALUES ('13','7',"(Villejuif - Louis Aragon / Mairie d'Ivry/La Courneuve - 8 mai 1945)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('14','8',"(Pointe du Lac/Balard)");
 INSERT INTO line(id_line, line_number, line_name) VALUES ('15','9',"(Mairie de Montreuil/Pont de Sèvres)");
-INSERT INTO line(id_line, line_number, line_name) VALUES ('16','FUN',"(Gare haute/Gare basse)");
-INSERT INTO line(id_line, line_number, line_name) VALUES ('17','ORV',"(Orly-Sud/Antony)");
 INSERT INTO station(id_station, station_name) VALUES ('1975',"Abbesses");
 INSERT INTO station(id_station, station_name) VALUES ('1981',"Alésia");
 INSERT INTO station(id_station, station_name) VALUES ('1978',"Alexandre-Dumas");
