@@ -12,7 +12,7 @@ class LoginController extends ControllerBase
 
             $email = $this->request->getPost("email");
             $pass = $this->request->getPost("password");
-
+            print_r($this->request->getPost());
             $user = Users::findFirstByEmail($email);
             if ($user) {
                 if ($this->security->checkHash($pass, $user->password)) {

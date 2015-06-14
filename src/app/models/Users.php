@@ -30,6 +30,18 @@ class Users extends \Phalcon\Mvc\Model
     public $token;
 
     /**
+     *
+     * @var integer
+     */
+    public $offer;
+
+    /**
+     *
+     * @var integer
+     */
+    public $type;
+
+    /**
      * Validations and business logic
      *
      * @return boolean
@@ -57,6 +69,8 @@ class Users extends \Phalcon\Mvc\Model
      */
     public function initialize()
     {
+        $this->hasMany('id', 'Comsumption', 'user', array('alias' => 'Comsumption'));
+        $this->belongsTo('offer', 'Offers', 'id', array('alias' => 'Offers'));
     }
 
     /**

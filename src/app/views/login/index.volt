@@ -46,7 +46,7 @@
     </div>
 </header>
 <div id="headerwrap">
-<form method="post" action="login" style="display: none;">
+<form method="post" action="../login" style="display: none;">
     <span>Adresse email</span><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
     <span>Mot de passe</span><input class="form-control" name="password" type="password" placeholder="********">
     <input type="submit" class="btn btn-success" value="Connexion">

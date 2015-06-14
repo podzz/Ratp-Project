@@ -49,7 +49,7 @@
 </header>
 <div id="headerwrap">
     <h1>Création de compte</h1>
-    <form method="post" action="login" style="display: none;">
+    <form method="post" action="create" style="display: none;">
         <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><br>
         <h3>Mot de passe</h3><input class="form-control" name="password" type="password" placeholder="********">
         <h3>Répétez le mot  de passe</h3><input class="form-control" name="password_verif" type="password" placeholder="********"><hr>
@@ -96,6 +96,7 @@
 
         <input type="submit" class="btn btn-success" value="Création du compte">
     </form>
+    {{ data }}
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
