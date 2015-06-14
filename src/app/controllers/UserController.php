@@ -1,11 +1,20 @@
 <?php
 
+require_once("oauth.php");
+
 class UserController extends \Phalcon\Mvc\Controller
 {
 
     public function indexAction()
     {
         // Dashboard
+    }
+
+    public function logAction()
+    {
+        $oa = new Oauth();
+        $oa->init();
+        $oa->insertUser("testclient", "testpass", "http://fake/");
     }
 
     public function createAction()

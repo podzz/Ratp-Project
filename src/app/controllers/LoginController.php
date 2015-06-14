@@ -2,7 +2,6 @@
 
 use Phalcon\Http\Request;
 use Phalcon\Http\Response;
-require_once __DIR__.'./oauth.php';
 
 class LoginController extends ControllerBase
 {

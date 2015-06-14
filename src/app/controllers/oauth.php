@@ -6,6 +6,9 @@
  * Time: 18:38
  */
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
+
+
 class Oauth {
     public $dsn      = 'mysql:dbname=ratp;host=localhost';
     public $username = 'root';
@@ -16,7 +19,6 @@ class Oauth {
         // TODO remove for production
         ini_set('display_errors',1);error_reporting(E_ALL);
 
-        require_once('../oauth2-server-php/src/OAuth2/Autoloader.php');
         OAuth2\Autoloader::register();
 
         $storage = new OAuth2\Storage\Pdo(array('dsn' => $this->dsn, 'username' => $this->username, 'password' => $this->password));
@@ -32,17 +34,21 @@ class Oauth {
         $secret         = $this->sanitize($secret);
         $redirectUri    = $this->sanitize($redirectUri);
 
-
         $db = new PDO($this->dsn, $this->username, $this->password);
-        $stmt = $db->query('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ('.$username.', '.$secret.', '.$redirectUri.')');
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $db->exec('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ('.$username.', '.$secret.', '.$redirectUri.')');
 
-        var_dump($results);
-        die();
-
-        $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
+        $result =  $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
+        return $result;
     }
 
+    public function verifyRequest()
+    {
+        if (!$this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals())) {
+            $this->server->getResponse()->send();
+            die;
+        }
+        echo json_encode(array('success' => true, 'message' => 'Auth OK'));
+    }
     /**
      * Clean String variable for request String
      *

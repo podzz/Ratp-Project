@@ -6,7 +6,6 @@
  * Date: 11/06/15
  * Time: 19:39
  */
-require_once __DIR__.'../config/oauth.php';
 
 class ApiController extends \Phalcon\Mvc\Controller
 {
