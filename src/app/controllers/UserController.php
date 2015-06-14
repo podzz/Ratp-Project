@@ -15,9 +15,9 @@ class UserController extends \Phalcon\Mvc\Controller
             $email = $this->request->getPost("email");
             $pass = $this->request->getPost("password");
             $offer = $this->request->getPost("offer");
-            $pass_verif = $this->request->getPost("password_verif");
 
-            if ($pass == $pass_verif) {
+            if (strlen($email) != 0 && strlen($pass) != 0)
+            {
                 $user = Users::findFirstByEmail($email);
                 if ($user) {
                     $this->view->errorMsg = "Ce compte existe déjà";
@@ -27,12 +27,11 @@ class UserController extends \Phalcon\Mvc\Controller
                     $user->password = $pass;
                     $user->token = com_create_guid();
                     $user->save();
+                    $this->response->redirect();
                 }
             }
             else
-            {
-                $this->view->errorMsg = "Les mots de passe diffèrent";
-            }
+                $this->view->errorMsg = "Les données entrées sont invalides";
         }
     }
 }
