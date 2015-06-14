@@ -5,16 +5,7 @@ class IndexController extends ControllerBase
 
     public function indexAction()
     {
-        $query = $this->modelsManager->createBuilder()
-            ->from('Stations')
-            ->join('LineStations', 'Stations.id_station = ls.id_station', 'ls')
-            ->join('Lines', 'l.id_line = ls.id_line', 'l')
-            ->columns(array('station_name', 'group_concat(line_number) as lines_num'))
-            ->groupBy('Stations.id_station')
-            ->orderBy('Stations.station_name');
-
-        $stations = $query->getQuery()->execute();
-
+        $stations = DatabaseService::linesstations($this->modelsManager->createBuilder());
 
         $stationsViewModel = array();
         foreach ($stations as $station)

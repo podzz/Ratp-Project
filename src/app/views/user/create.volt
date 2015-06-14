@@ -56,7 +56,7 @@
 
         <table class="table table-bordered">
             <tr>
-                <td></td>
+                <td>Nom de l'offre</td>
                 <td>
                     Zealot
                 </td>
@@ -72,6 +72,12 @@
                 <td>100</td>
                 <td>1000</td>
                 <td>10000</td>
+            </tr>
+            <tr>
+                <td>Prix</td>
+                <td>5€ / an</td>
+                <td>40€ / an</td>
+                <td>70€ / an</td>
             </tr>
             <tr>
                 <td></td>
