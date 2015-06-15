@@ -75,224 +75,53 @@
                 <div id="lineResult" class="col-md-6" style="background-color: #246593; padding: 10px;">
 
                     <div class="row">
+                        <div class="col-lg-6">
+                            <table class="table col-md-3" style="color: white; text-align: center;">
+                                <tr>
+                                    <td><img class='station-number' src='public/img/M_1.png'/>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <table class="table" style="color: white; text-align: center;">
+                                        <tr>
+                                            <td width=""><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                        </tr>
+                                        <td>
+                                            <b>La Défense (Grande Arche)</b>
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
 
-                        <div class="col-lg-6">
-                            <table class="table col-md-3" style="color: white; text-align: center;">
-                                <tr>
-                                    <td></td>
-                                    <td><img class='station-number' src='public/img/M_1.png'/>
-                                    </td>
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
+
+                                        </td>
+                                    </table>
                                 </tr>
                                 <tr>
-                                    <td>
-                                        La Défense (Grande Arche)
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%" >
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Porte de Vincennes
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%">
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-lg-6">
-                            <table class="table col-md-3" style="color: white; text-align: center;">
-                                <tr>
-                                    <td></td>
-                                    <td><img class='station-number' src='public/img/M_1.png'/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        La Défense (Grande Arche)
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%" >
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Porte de Vincennes
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%">
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-lg-6">
-                            <table class="table col-md-3" style="color: white; text-align: center;">
-                                <tr>
-                                    <td></td>
-                                    <td><img class='station-number' src='public/img/M_1.png'/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        La Défense (Grande Arche)
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%" >
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Porte de Vincennes
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%">
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                            </table>
-                        </div>
-                        <div class="col-lg-6">
-                            <table class="table col-md-3" style="color: white; text-align: center;">
-                                <tr>
-                                    <td></td>
-                                    <td><img class='station-number' src='public/img/M_1.png'/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        La Défense (Grande Arche)
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%" >
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        Porte de Vincennes
-                                    </td>
-                                    <td>
-                                        <table>
-                                            <tr>
-                                                <td width="50%">
-                                                    <b>2 min</b>
-                                                </td>
-                                                <td>
-                                                    4 min
-                                                </td>
-                                                <td>
-                                                    6 min
-                                                </td>
-                                                <td>
-                                                    8 min
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
+                                    <table class="table" style="color: white; text-align: center;">
+                                        <tr>
+                                            <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                        </tr>
+                                        <td>
+                                            La Défense (Grande Arche)
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
+
+                                        </td>
+                                        <td>
+                                            La Défense (Grande Arche)
+
+                                        </td>
+                                    </table>
                                 </tr>
                             </table>
                         </div>
@@ -367,115 +196,115 @@
                 linesData += ']';
 
                 var requestData = '{ "linesNumber":"' + linesData + '",  "station_name":"' + ui.item.label + '" }';
-                var data_tmp = '{\
-                        "serviceStatus": "Up",\
-                                "stationName": "Châtelet",\
-                                "requestLines": [\
-                            1,\
-                            4,\
-                            7,\
-                            14\
-                        ],\
-                                "lines": {\
-                            "1": [\
-                                { \
-                                    "Aller": { \
-                                        "next_metro": [\
-                                            "2 mn",\
-                                            "6 mn",\
-                                            "12 mn",\
-                                            "16 mn"\
-                                        ],\
-                                        "destination": "La Défense"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "1 mn",\
-                                            "6 mn",\
-                                            "11 mn",\
-                                            "16 mn"\
-                                        ],\
-                                        "destination": "Château de Vincennes"\
-                                    }\
-                                }\
-                            ],\
-                                    "4": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "9 mn",\
-                                            "16 mn",\
-                                            "22 mn"\
-                                        ],\
-                                        "destination": "Mairie de Montrouge"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "Train a l\'approche",\
-                                            "5 mn",\
-                                            "12 mn",\
-                                            "19 mn"\
-                                        ],\
-                                        "destination": "Porte de Clignancourt"\
-                                    }\
-                                }\
-                            ],\
-                                    "7": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "3 mn",\
-                                            "12 mn",\
-                                            "17 mn",\
-                                            "23 mn"\
-                                        ],\
-                                        "destination": "Mairie d\'Ivry"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "8 mn",\
-                                            "15 mn",\
-                                            "21 mn"\
-                                        ],\
-                                        "destination": "La Courneuve 8 mai 1945"\
-                                    }\
-                                }\
-                            ],\
-                                    "14": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "1 mn",\
-                                            "4 mn",\
-                                            "7 mn"\
-                                        ],\
-                                        "destination": "Saint-Lazare"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "3 mn",\
-                                            "6 mn"\
-                                        ],\
-                                        "destination": "Olympiades"\
-                                    }\
-                                }\
-                            ]\
-                        }\
-                    }';
-                $('#lineResult').html(addLineInfo(JSON.parse(data_tmp)));
-                /*
+                /* var data_tmp = '{\
+                 "serviceStatus": "Up",\
+                 "stationName": "Châtelet",\
+                 "requestLines": [\
+                 1,\
+                 4,\
+                 7,\
+                 14\
+                 ],\
+                 "lines": {\
+                 "1": [\
+                 { \
+                 "Aller": { \
+                 "next_metro": [\
+                 "2 mn",\
+                 "6 mn",\
+                 "12 mn",\
+                 "16 mn"\
+                 ],\
+                 "destination": "La Défense"\
+                 },\
+                 "Retour": {\
+                 "next_metro": [\
+                 "1 mn",\
+                 "6 mn",\
+                 "11 mn",\
+                 "16 mn"\
+                 ],\
+                 "destination": "Château de Vincennes"\
+                 }\
+                 }\
+                 ],\
+                 "4": [\
+                 {\
+                 "Aller": {\
+                 "next_metro": [\
+                 "0 mn",\
+                 "9 mn",\
+                 "16 mn",\
+                 "22 mn"\
+                 ],\
+                 "destination": "Mairie de Montrouge"\
+                 },\
+                 "Retour": {\
+                 "next_metro": [\
+                 "Train a l\'approche",\
+                 "5 mn",\
+                 "12 mn",\
+                 "19 mn"\
+                 ],\
+                 "destination": "Porte de Clignancourt"\
+                 }\
+                 }\
+                 ],\
+                 "7": [\
+                 {\
+                 "Aller": {\
+                 "next_metro": [\
+                 "3 mn",\
+                 "12 mn",\
+                 "17 mn",\
+                 "23 mn"\
+                 ],\
+                 "destination": "Mairie d\'Ivry"\
+                 },\
+                 "Retour": {\
+                 "next_metro": [\
+                 "0 mn",\
+                 "8 mn",\
+                 "15 mn",\
+                 "21 mn"\
+                 ],\
+                 "destination": "La Courneuve 8 mai 1945"\
+                 }\
+                 }\
+                 ],\
+                 "14": [\
+                 {\
+                 "Aller": {\
+                 "next_metro": [\
+                 "1 mn",\
+                 "4 mn",\
+                 "7 mn"\
+                 ],\
+                 "destination": "Saint-Lazare"\
+                 },\
+                 "Retour": {\
+                 "next_metro": [\
+                 "0 mn",\
+                 "3 mn",\
+                 "6 mn"\
+                 ],\
+                 "destination": "Olympiades"\
+                 }\
+                 }\
+                 ]\
+                 }\
+                 }';
+                 $('#lineResult').html(addLineInfo(JSON.parse(data_tmp)));
+                 */
                 $.ajax({
                     type: "POST",
                     url: "api/nextMetro",
                     data: requestData,
                     success: function(data) {
-                        $('#lineResult').html(addLineInfo(JSON.parse(data)));
+                        $('#lineResult').html(addLineInfo(data));
                     }
                 });
-                */
+
                 <?php } else { ?>
                 $('#myModal').modal(true);
                 <?php } ?>
@@ -498,8 +327,8 @@
     });
 
     function addLineInfo(lineInfo) {
-    var table = $('<table>').addClass("table").css("color", "white").css("text-align", "center");
-
+        var table = $('<table>').addClass("table").css("color", "white").css("text-align", "center");
+        debugger;
 
         lineInfo.requestLines.forEach(function (line) {
             var lineImg = $('<img src=\'public/img/M_' + line + '.png\'>').addClass('station-number');
@@ -508,70 +337,70 @@
                     .append($('<td>').append(lineImg));
 
             $(table)
-                .append(lineIdentity);
+                    .append(lineIdentity);
 
-            debugger;
+
             $(table)
-                .append($('<tr>')
+                    .append($('<tr>')
                             .append());
 
         });
         return table;
 
-/*
-<tr>
-    <td></td>
-    <td><img class='station-number' src='public/img/M_1.png'/>
-    </td>
-</tr>
-<tr>
-    <td>
- La Défense (Grande Arche)
-    </td>
-    <td>
-        <table>
-            <tr>
-                <td width="50%" >
-                    <b>2 min</b>
-                </td>
-                <td>
-                    4 min
-                </td>
-                <td>
-                    6 min
-                </td>
-                <td>
-                    8 min
-                </td>
-            </tr>
-        </table>
-    </td>
-</tr>
-<tr>
-    <td>
-        Porte de Vincennes
-    </td>
-    <td>
-        <table>
-            <tr>
-                <td width="50%">
-                    <b>2 min</b>
-                </td>
-                <td>
-                    4 min
-                </td>
-                <td>
-                    6 min
-                </td>
-                <td>
-                    8 min
-                </td>
-            </tr>
-        </table>
-    </td>
-</tr>
-</table>
-</div>*/
+        /*
+         <tr>
+         <td></td>
+         <td><img class='station-number' src='public/img/M_1.png'/>
+         </td>
+         </tr>
+         <tr>
+         <td>
+         La Défense (Grande Arche)
+         </td>
+         <td>
+         <table>
+         <tr>
+         <td width="50%" >
+         <b>2 min</b>
+         </td>
+         <td>
+         4 min
+         </td>
+         <td>
+         6 min
+         </td>
+         <td>
+         8 min
+         </td>
+         </tr>
+         </table>
+         </td>
+         </tr>
+         <tr>
+         <td>
+         Porte de Vincennes
+         </td>
+         <td>
+         <table>
+         <tr>
+         <td width="50%">
+         <b>2 min</b>
+         </td>
+         <td>
+         4 min
+         </td>
+         <td>
+         6 min
+         </td>
+         <td>
+         8 min
+         </td>
+         </tr>
+         </table>
+         </td>
+         </tr>
+         </table>
+         </div>*/
     }
 </script>
 </body>
