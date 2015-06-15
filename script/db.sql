@@ -19,6 +19,8 @@ type INT UNSIGNED NOT NULL,
 FOREIGN KEY(offer) REFERENCES offers(id)
 );
 
+ALTER TABLE `users` ADD `expiration` DATETIME NOT NULL AFTER `id`;
+
 CREATE TABLE line (
 id_line INT(6) UNSIGNED PRIMARY KEY,
 line_number VARCHAR(4) NOT NULL,
