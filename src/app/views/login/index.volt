@@ -46,12 +46,19 @@
     </div>
 </header>
 <div id="headerwrap">
+    {%  if errorMsg is defined %}
+        <div class="panel panel-default" style="margin: 20px auto; max-width: 60%; background: lightcyan;">
+            <div class="panel-body">
+                {{ errorMsg }}
+            </div>
+        </div>
+    {% endif %}
     <h1>Connexion</h1>
-<form method="post" action="../login" style="display: none;">
-    <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
-    <h3>Mot de passe</h3><input class="form-control" name="password" type="password" placeholder="********">
-    <input type="submit" class="btn btn-success" value="Connexion">
-</form>
+    <form method="post" action="login" style="display: none;">
+        <h3>Adresse email</h3><input class="form-control" name="email" type="email" placeholder="exemple@domain.com"><hr>
+        <h3>Mot de passe</h3><input class="form-control" name="password" type="password" placeholder="********">
+        <input type="submit" class="btn btn-success" value="Connexion">
+    </form>
 </div>
 <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>

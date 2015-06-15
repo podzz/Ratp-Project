@@ -1,5 +1,6 @@
 <?php
 
+use Phalcon\Crypt;
 require_once("oauth.php");
 
 class UserController extends \Phalcon\Mvc\Controller
@@ -21,6 +22,7 @@ class UserController extends \Phalcon\Mvc\Controller
         $oa = new Oauth();
         $oa->verifyRequest();
     }
+
     public function createAction()
     {
         if ($this->request->isPost()) {
@@ -37,8 +39,10 @@ class UserController extends \Phalcon\Mvc\Controller
                 } else {
                     $user = new Users();
                     $user->email = $email;
-                    $user->password = $pass;
+
+                    $user->password = $this->security->hash($pass);
                     $user->token = uniqid();
+
                     $user->offer = $offer;
                     $user->type = 1;
                     $user->save();
@@ -47,7 +51,6 @@ class UserController extends \Phalcon\Mvc\Controller
             }
             else
                 $this->view->errorMsg = "Les données entrées sont invalides";
-
         }
     }
 }

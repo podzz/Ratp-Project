@@ -3,6 +3,8 @@
 use Phalcon\Http\Request;
 use Phalcon\Http\Response;
 
+use Phalcon\Crypt;
+
 class LoginController extends ControllerBase
 {
 
@@ -15,12 +17,22 @@ class LoginController extends ControllerBase
 
             $user = Users::findFirstByEmail($email);
             if ($user) {
-                if ($this->security->checkHash($pass, $user->password)) {
-                    // Connected
+
+               if ($this->security->checkHash($pass, $user->password)) {
+                    $this->session->set("token", $user->token);
+                    $this->session->set("email", $email);
+
+                    $this->response->redirect();
+                }
+                else
+                {
+                    $this->view->errorMsg = 'Mauvais couple email / mot de passe';
                 }
             }
-
-            // Or nah
+            else
+            {
+                $this->view->errorMsg = 'Mauvais couple email / mot de passe';
+            }
         }
     }
 
