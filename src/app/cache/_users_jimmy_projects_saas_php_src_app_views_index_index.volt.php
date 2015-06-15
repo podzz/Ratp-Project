@@ -56,7 +56,7 @@
     </div>
 </header>
 <?php if ($logged) { ?>
-<div id="headerwrap" style="margin: auto;">
+<div id="headerwrap" style="margin: 20px auto auto;">
 <?php } else { ?>
 <div id="headerwrap">
     <?php } ?>

@@ -47,7 +47,7 @@
 </header>
 <div id="headerwrap">
     {%  if errorMsg is defined %}
-        <div class="panel panel-default" style="margin: 20px auto; max-width: 60%; background: lightcyan;">
+        <div class="panel panel-default" style="margin: 20px auto auto; max-width: 60%; background: lightcyan;">
             <div class="panel-body">
                 {{ errorMsg }}
             </div>

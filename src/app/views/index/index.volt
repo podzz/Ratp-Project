@@ -56,7 +56,7 @@
     </div>
 </header>
 {% if logged %}
-<div id="headerwrap" style="margin: auto;">
+<div id="headerwrap" style="margin: 20px auto auto;">
 {% else %}
 <div id="headerwrap">
     {% endif %}
