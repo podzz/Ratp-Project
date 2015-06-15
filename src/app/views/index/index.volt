@@ -45,10 +45,13 @@
                 </ul>
             {% else %}
                 <ul class="nav navbar-nav navbar-right">
+                    <li>{{ link_to('login/disconnect', 'Déconnexion') }}</li>
+                </ul>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px; margin-top: 5px;">
                     <li><h4>{{ email }}</h4></li>
                 </ul>
-            {% endif %}
 
+            {% endif %}
         </div><!--/.nav-collapse -->
     </div>
 </header>
@@ -69,7 +72,7 @@
                 </form>
             </div><!-- /col-lg-6 -->
             {% if logged %}
-                <div id="lineResult" class="col-lg-6" style="background-color: #246593; padding: 10px;">
+                <div id="lineResult" class="col-md-6" style="background-color: #246593; padding: 10px;">
 
                     <div class="row">
 
@@ -296,7 +299,7 @@
                     </div>
                 </div><!-- /col-lg-6 -->
             {% else %}
-                <div class="col-lg-6">
+                <div class="col-md-6">
                     <img class="img-responsive"
                          src="public/img/ipad-hand.png" alt="" style="display: none;">
                 </div><!-- /col-lg-6 -->
@@ -469,105 +472,7 @@
                     url: "api/nextMetro",
                     data: requestData,
                     success: function(data) {
-                        var data_tmp = '{\
-                        "serviceStatus": "Up",\
-                                "stationName": "Châtelet",\
-                                "requestLines": [\
-                            1,\
-                            4,\
-                            7,\
-                            14\
-                        ],\
-                                "lines": {\
-                            "1": [\
-                                { \
-                                    "Aller": { \
-                                        "next_metro": [\
-                                            "2 mn",\
-                                            "6 mn",\
-                                            "12 mn",\
-                                            "16 mn"\
-                                        ],\
-                                        "destination": "La Défense"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "1 mn",\
-                                            "6 mn",\
-                                            "11 mn",\
-                                            "16 mn"\
-                                        ],\
-                                        "destination": "Château de Vincennes"\
-                                    }\
-                                }\
-                            ],\
-                                    "4": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "9 mn",\
-                                            "16 mn",\
-                                            "22 mn"\
-                                        ],\
-                                        "destination": "Mairie de Montrouge"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "Train a l\'approche",\
-                                            "5 mn",\
-                                            "12 mn",\
-                                            "19 mn"\
-                                        ],\
-                                        "destination": "Porte de Clignancourt"\
-                                    }\
-                                }\
-                            ],\
-                                    "7": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "3 mn",\
-                                            "12 mn",\
-                                            "17 mn",\
-                                            "23 mn"\
-                                        ],\
-                                        "destination": "Mairie d\'Ivry"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "8 mn",\
-                                            "15 mn",\
-                                            "21 mn"\
-                                        ],\
-                                        "destination": "La Courneuve 8 mai 1945"\
-                                    }\
-                                }\
-                            ],\
-                                    "14": [\
-                                {\
-                                    "Aller": {\
-                                        "next_metro": [\
-                                            "1 mn",\
-                                            "4 mn",\
-                                            "7 mn"\
-                                        ],\
-                                        "destination": "Saint-Lazare"\
-                                    },\
-                                    "Retour": {\
-                                        "next_metro": [\
-                                            "0 mn",\
-                                            "3 mn",\
-                                            "6 mn"\
-                                        ],\
-                                        "destination": "Olympiades"\
-                                    }\
-                                }\
-                            ]\
-                        }\
-                    }';
-                        $('#lineResult').html(addLineInfo(JSON.parse(data_tmp)));
+                        $('#lineResult').html(addLineInfo(JSON.parse(data)));
                     }
                 });
                 */
@@ -604,9 +509,11 @@
 
             $(table)
                 .append(lineIdentity);
+
             debugger;
-            // { Aller / Retour }
-            var lineData = lineInfo.lines[line][0];
+            $(table)
+                .append($('<tr>')
+                            .append());
 
         });
         return table;

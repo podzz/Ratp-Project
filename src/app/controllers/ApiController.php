@@ -6,7 +6,7 @@
  * Date: 11/06/15
  * Time: 19:39
  */
-require_once("oauth.php");
+//require_once("oauth.php");
 
 class ApiController extends \Phalcon\Mvc\Controller
 {

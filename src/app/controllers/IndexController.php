@@ -22,6 +22,23 @@ class IndexController extends ControllerBase
 
             $this->view->email = $this->session->get("email");
             $this->view->token =  $this->session->get("token");
+
+            $user = Users::findFirstByEmail($this->session->get("email"));
+
+            //$offerMax = Offers::findFirstById($user->offer);
+            //$this->view->maxQueries = $offerMax;
+
+            /*$userActualQueries = $this->modelsManager->createBuilder()
+                                ->from('Comsumption')
+                                ->where('Comsumption.user = ' . $user->id . ' AND (datetimestamp > NOW() - (INTERVAL 1 DAY))')
+                                ->columns('datetimestamp')
+                                ->getQuery()->execute();*/
+
+            $actualQueries = [];
+
+            $this->view->actualQueries = $actualQueries;
+
+
         }
     }
 }

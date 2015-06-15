@@ -1,16 +1,10 @@
 <?php
 
 use Phalcon\Crypt;
-require_once("oauth.php");
+//require_once("oauth.php");
 
 class UserController extends \Phalcon\Mvc\Controller
 {
-
-    public function indexAction()
-    {
-        // Dashboard
-    }
-
     public function logAction()
     {
         $oa = new Oauth();
