@@ -6,7 +6,6 @@
  * Time: 18:38
  */
 
-// require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
 use OAuth2\Autoloader;
 
 class Oauthorize {

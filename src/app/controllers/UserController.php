@@ -1,7 +1,6 @@
 <?php
 
 use Phalcon\Crypt;
-//require_once("oauth.php");
 
 class UserController extends \Phalcon\Mvc\Controller
 {
