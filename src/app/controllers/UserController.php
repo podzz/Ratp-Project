@@ -14,13 +14,12 @@ class UserController extends \Phalcon\Mvc\Controller
     public function logAction()
     {
         $oa = new Oauth();
-        $oa->init();
-        $oa->insertUser("testclient", "testpass", "http://fake/");
+        $oa->getNewToken("testclient", "testpass", "http://fake/");
     }
     public function testAction()
     {
         $oa = new Oauth();
-        $oa->verifyRequest();
+        $oa->checkToken();
     }
 
     public function createAction()
