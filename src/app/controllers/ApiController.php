@@ -12,7 +12,7 @@ class ApiController extends \Phalcon\Mvc\Controller
 {
     private function verifyOauth() {
         $oa = new Oauth();
-        $oa->verifyRequest();
+        return $oa->checkToken();
     }
 
     public function linesAction()

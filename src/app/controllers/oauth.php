@@ -26,28 +26,56 @@ class Oauth {
         $this->server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
     }
 
-    public function insertUser($username, $secret, $redirectUri)
+    public function getNewToken($username, $secret, $redirectUri)
     {
+        $this->init();
         $username       = $this->sanitize($username);
         $secret         = $this->sanitize($secret);
         $redirectUri    = $this->sanitize($redirectUri);
 
         $db = new PDO($this->dsn, $this->username, $this->password);
         $db->exec('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("'.$username.'", "'.$secret.'", "'.$redirectUri.'");');
-
-        $result =  $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals())->send();
-        return $result;
+        $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
+        return $res->getParameters()["access_token"];
     }
 
-    public function verifyRequest()
+    public function checkToken()
     {
         $this->init();
-        if (!$this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals())) {
-            $this->server->getResponse()->send();
-            die;
-        }
-        echo json_encode(array('success' => true, 'message' => 'Auth OK'));
+        return $this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals());
     }
+
+    public function saveToken($token) {
+        $nowDate = new DateTime();
+
+        $nowDate->add(new DateInterval("PT60M"));
+
+        $this->session->set("token", $token);
+        $this->session->set("token_exp", $nowDate->format("Y/m/d m:i:s"));
+    }
+
+    public function checkTokenExpiration() {
+        if ($this->session->has("token_exp")) {
+            $expDate = $this->session->get("token_exp");
+            return isExpired($expDate);
+        }
+        return true;
+    }
+
+    function isExpired(DateTime $date)
+    {
+        $now = new DateTime();
+        return $now > $date;
+    }
+
+    public function getToken() {
+        //Check if the variable is defined
+        if ($this->session->has("token")) {
+            return $this->session->get("token");
+        }
+        return false;
+    }
+
     /**
      * Clean String variable for request String
      *
