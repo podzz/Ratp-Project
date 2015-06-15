@@ -6,7 +6,7 @@
  * Time: 18:38
  */
 
-require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
+//require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
 
 class Oauth {
     public $dsn      = 'mysql:dbname=ratp;host=localhost';
@@ -42,11 +42,7 @@ class Oauth {
     public function verifyRequest()
     {
         $this->init();
-        if (!$this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals())) {
-            $this->server->getResponse()->send();
-            die;
-        }
-        echo json_encode(array('success' => true, 'message' => 'Auth OK'));
+        return $this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals());
     }
     /**
      * Clean String variable for request String
