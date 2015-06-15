@@ -62,8 +62,8 @@ class ApiController extends \Phalcon\Mvc\Controller
             foreach ($linesNumber as $line) {
                 $output["lines"][$line] = array();
                 array_push($output["lines"][$line], array(
-                        'Aller' => RatpService::GetNextMetro(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'A'),
-                        'Retour' => RatpService::GetNextMetro(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'R')
+                        'Aller' => RatpService::GetNextMetroCached(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'A'),
+                        'Retour' => RatpService::GetNextMetroCached(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'R')
                     )
                 );
             }

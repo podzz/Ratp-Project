@@ -59,7 +59,8 @@ class LoginController extends ControllerBase
 
     public function disconnectAction()
     {
-
+        $this->session->destroy();
+        $this->response->redirect();
     }
 
     public function oauthAction()
