@@ -24,7 +24,7 @@ return new \Phalcon\Config(array(
         'libraryDir'     => APP_PATH . '/app/library/',
         'cacheDir'       => APP_PATH . '/app/cache/',
         'servicesDir'    => APP_PATH . '/app/services/',
-        'oAuthLoaderFile'    => APP_PATH . '/app/oauth2-server-php/src/OAuth2/Autoloader.php',
+        'oauth'          => APP_PATH . '/app/oauth2-server-php/src/OAuth2/',
         'baseUri'        => '/ratp/'
     )
 ));

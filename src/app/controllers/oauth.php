@@ -6,6 +6,8 @@
  * Time: 18:38
  */
 
+require_once($_SERVER['DOCUMENT_ROOT'].'/oauth2-server-php/src/OAuth2/Autoloader.php');
+
 class Oauth {
     public $dsn      = 'mysql:dbname=ratp;host=localhost';
     public $username = 'root';
@@ -15,7 +17,6 @@ class Oauth {
     public function init() {
         // TODO remove for production
         ini_set('display_errors',1);error_reporting(E_ALL);
-
         OAuth2\Autoloader::register();
 
         $storage = new OAuth2\Storage\Pdo(array('dsn' => $this->dsn, 'username' => $this->username, 'password' => $this->password));
@@ -40,6 +41,7 @@ class Oauth {
 
     public function verifyRequest()
     {
+        $this->init();
         if (!$this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals())) {
             $this->server->getResponse()->send();
             die;

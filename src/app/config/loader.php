@@ -14,6 +14,5 @@ $loader->registerDirs(
     )
 )->registerClasses(
     array(
-        $config->application->oAuthLoaderFile
     )
 )->register();
