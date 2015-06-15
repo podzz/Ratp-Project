@@ -18,15 +18,36 @@ class LoginController extends ControllerBase
             $user = Users::findFirstByEmail($email);
             if ($user) {
 
-               if ($this->security->checkHash($pass, $user->password)) {
-                    $this->session->set("token", $user->token);
-                    $this->session->set("email", $email);
+                // Admin
+                if ($user->type == 2)
+                {
+                    if ($user->password == $pass)
+                    {
+                        $this->session->set("token", $user->token);
+                        $this->session->set("email", $email);
+                        $this->session->set("admin", true);
 
-                    $this->response->redirect();
+                        $this->response->redirect();
+                    }
+                    else
+                    {
+                        $this->view->errorMsg = 'Mauvais couple email / mot de passe';
+                    }
                 }
                 else
                 {
-                    $this->view->errorMsg = 'Mauvais couple email / mot de passe';
+                    // Common users
+                    if ($this->security->checkHash($pass, $user->password)) {
+                        $this->session->set("token", $user->token);
+                        $this->session->set("email", $email);
+                        $this->session->set("admin", false);
+
+                        $this->response->redirect();
+                    }
+                    else
+                    {
+                        $this->view->errorMsg = 'Mauvais couple email / mot de passe';
+                    }
                 }
             }
             else
@@ -34,6 +55,11 @@ class LoginController extends ControllerBase
                 $this->view->errorMsg = 'Mauvais couple email / mot de passe';
             }
         }
+    }
+
+    public function disconnectAction()
+    {
+
     }
 
     public function oauthAction()

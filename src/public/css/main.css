@@ -124,11 +124,9 @@ i {
 
 /* HeaderWrap */
 #headerwrap {
-    margin-top: -20px;
-	padding-top:200px;
+    margin-top: 100px;
     height: 100%;
 	width: 100%;
-	
     -webkit-background-size: 100%;
     -moz-background-size: 100%;
     -o-background-size: 100%;
@@ -248,5 +246,9 @@ i {
 }
 .modal-body input {
     margin: auto;
+}
+
+h4 {
+    color: white;
 }
 
