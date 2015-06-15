@@ -15,6 +15,12 @@ class Users extends \Phalcon\Mvc\Model
      *
      * @var string
      */
+    public $expiration;
+
+    /**
+     *
+     * @var string
+     */
     public $email;
 
     /**
