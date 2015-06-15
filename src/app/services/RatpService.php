@@ -35,11 +35,10 @@ class RatpService
         $html = file_get_contents($url_formatted);
 
         $listDestination = RatpService::GetXPathUrl($html, '//*[@id="prochains_passages"]/fieldset/table//td');
-        for ($i = 0; $i < count($listDestination); $i++) {
-            if ($i == 0) {
-                $json["destination"] = $listDestination[$i];
-            } else if ($i % 2 != 0)
-                array_push($json["next_metro"], $listDestination[$i]);
+        $json["next_metro"] = array();
+        for ($i = 0; $i < count($listDestination); $i+=2) {
+            array_push($json["next_metro"], array("station_name" => $listDestination[$i],
+                                                  "delay" =>  $listDestination[$i + 1]));
         }
 
         return $json;
@@ -63,11 +62,10 @@ class RatpService
             $html = file_get_contents($url_formatted);
 
             $listDestination = RatpService::GetXPathUrl($html, '//*[@id="prochains_passages"]/fieldset/table//td');
-            for ($i = 0; $i < count($listDestination); $i++) {
-                if ($i == 0) {
-                    $json["destination"] = $listDestination[$i];
-                } else if ($i % 2 != 0)
-                    array_push($json["next_metro"], $listDestination[$i]);
+            $json["next_metro"] = array();
+            for ($i = 0; $i < count($listDestination); $i+=2) {
+                    array_push($json["next_metro"], array("station_name" => $listDestination[$i],
+                                                          "delay" =>  $listDestination[$i + 1]));
             }
             if (count($json["next_metro"]) > 0)
                 $cache->save($line.$stationname.$destination, $json);
