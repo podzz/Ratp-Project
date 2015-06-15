@@ -5,7 +5,7 @@ use Phalcon\Crypt;
 
 class UserController extends \Phalcon\Mvc\Controller
 {
-    public function logAction()
+    public function getTokenAction()
     {
         $oa = new Oauthorize();
         $oa->getNewToken("testclient", "testpass", "http://fake/");

@@ -28,17 +28,20 @@ class Oauthorize {
         $this->server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
     }
 
-    public function getNewToken($username, $secret, $redirectUri)
+    public function getNewToken()
     {
         $this->init();
+        $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
+        return $res->getParameters()["access_token"];
+    }
+
+    public function registerUser($username, $secret, $redirectUri) {
         $username       = $this->sanitize($username);
         $secret         = $this->sanitize($secret);
         $redirectUri    = $this->sanitize($redirectUri);
 
         $db = new PDO($this->dsn, $this->username, $this->password);
         $db->exec('INSERT INTO oauth_clients (client_id, client_secret, redirect_uri) VALUES ("'.$username.'", "'.$secret.'", "'.$redirectUri.'");');
-        $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
-        return $res->getParameters()["access_token"];
     }
 
     public function checkToken()
