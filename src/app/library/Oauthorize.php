@@ -9,9 +9,9 @@
 use OAuth2\Autoloader;
 
 class Oauthorize {
-    public $dsn      = 'mysql:dbname=ratp;host=127.0.0.1;port=3306';
+    public $dsn      = 'mysql:dbname=ratp;host=localhost';
     public $username = 'root';
-    public $password = 'Password';
+    public $password = '';
     private $server;
 
     public function __construct() {
@@ -31,15 +31,12 @@ class Oauthorize {
     public function getNewToken($email)
     {
         $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
-        ob_start();
-        var_dump($res->getParameters());
-        $result = ob_get_clean();
-        $token = $result;//$res->getParameters()["access_token"];
+        $token = $res->getParameters()["access_token"];
         $expiration = new DateTime();
 
         $expiration->add(new DateInterval("P1Y"));
         $db = new PDO($this->dsn, $this->username, $this->password);
-        $db->exec('UPDATE users SET token="'.$token.'", expiration="'.$expiration->format('Y-m-d H:i:s').'" WHERE email="'.$email.'";');
+        $db->exec('UPDATE users SET token="'.$token.'", expiration="'.$expiration.'" WHERE email="'.$email.'";');
         return $token;
     }
 
