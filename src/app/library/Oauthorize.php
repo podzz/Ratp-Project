@@ -14,7 +14,7 @@ class Oauthorize {
     public $password = '';
     private $server;
 
-    public function init() {
+    public function __construct() {
         // TODO remove for production
         ini_set('display_errors',1);error_reporting(E_ALL);
 
@@ -27,13 +27,14 @@ class Oauthorize {
         $this->server->addGrantType(new OAuth2\GrantType\AuthorizationCode($storage));
     }
 
+    // Returns a new token for the user given in the request head.
     public function getNewToken()
     {
-        $this->init();
         $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
         return $res->getParameters()["access_token"];
     }
 
+    // Insert client in oAuth DB for further authentification
     public function registerUser($username, $secret, $redirectUri) {
         $username       = $this->sanitize($username);
         $secret         = $this->sanitize($secret);
@@ -45,7 +46,6 @@ class Oauthorize {
 
     public function checkToken()
     {
-        $this->init();
         return $this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals());
     }
 

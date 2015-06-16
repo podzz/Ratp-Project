@@ -38,6 +38,11 @@ class UserController extends \Phalcon\Mvc\Controller
                     $user->offer = $offer;
                     $user->type = 1;
                     $user->save();
+
+                    // oAuth 2 registration
+                    $oa = new Oauthorize();
+                    $oa->registerUser($user->email, $user->password, "");
+
                     $this->response->redirect();
                 }
             }
