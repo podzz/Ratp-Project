@@ -12,6 +12,8 @@ use Phalcon\Cache\Frontend\Data as FrontData;
 
 class RatpService
 {
+
+
     public static function GetXPathUrl($html, $regex)
     {
         $page = new DOMDocument();
@@ -28,17 +30,16 @@ class RatpService
     public static function GetNextMetro($line, $stationname, $destination)
     {
         $json = [];
-        $json["next_metro"] = array();
 
-        $url = "http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/%s/%s/%s";
+        $url = 'http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/%s/%s/%s';
         $url_formatted = sprintf($url, urlencode($stationname), $line, $destination);
         $html = file_get_contents($url_formatted);
 
-        $listDestination = RatpService::GetXPathUrl($html, '//*[@id="prochains_passages"]/fieldset/table//td');
-        $json["next_metro"] = array();
-        for ($i = 0; $i < count($listDestination); $i+=2) {
-            array_push($json["next_metro"], array("station_name" => $listDestination[$i],
-                                                  "delay" =>  $listDestination[$i + 1]));
+        $listDestination = RatpService::GetXPathUrl($html, '//*[@id=\'prochains_passages\']/fieldset/table//td');
+        $json['next'] = array();
+        for ($i = 0; $i < count($listDestination); $i += 2) {
+            array_push($json['next'], array('terminus' => $listDestination[$i],
+                                            'delay' =>  $listDestination[$i + 1]));
         }
 
         return $json;
@@ -46,28 +47,28 @@ class RatpService
 
     public static function GetNextMetroCached($line, $stationname, $destination)
     {
+
         $frontCache = new FrontData(array(
-            "lifetime" => "30"
+            'lifetime' => '30'
         ));
         $cache = new BackFile($frontCache, array(
-            "cacheDir" => "../app/cache/"
+            'cacheDir' => '../app/cache/'
         ));
 
         if ($cache->get($line.$stationname.$destination) == null) {
             $json = [];
-            $json["next_metro"] = array();
 
-            $url = "http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/%s/%s/%s";
+            $url = 'http://www.ratp.fr/horaires/fr/ratp/metro/prochains_passages/PP/%s/%s/%s';
             $url_formatted = sprintf($url, urlencode($stationname), $line, $destination);
             $html = file_get_contents($url_formatted);
 
-            $listDestination = RatpService::GetXPathUrl($html, '//*[@id="prochains_passages"]/fieldset/table//td');
-            $json["next_metro"] = array();
-            for ($i = 0; $i < count($listDestination); $i+=2) {
-                    array_push($json["next_metro"], array("station_name" => $listDestination[$i],
-                                                          "delay" =>  $listDestination[$i + 1]));
+            $listDestination = RatpService::GetXPathUrl($html, '//*[@id=\'prochains_passages\']/fieldset/table//td');
+            $json['next'] = array();
+            for ($i = 0; $i < count($listDestination); $i += 2) {
+                    array_push($json['next'], array('terminus' => $listDestination[$i],
+                                                    'delay' =>  $listDestination[$i + 1]));
             }
-            if (count($json["next_metro"]) > 0)
+            if (count($json['next']) > 0)
                 $cache->save($line.$stationname.$destination, $json);
         }
         else

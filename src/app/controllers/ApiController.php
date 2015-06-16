@@ -53,16 +53,16 @@ class ApiController extends \Phalcon\Mvc\Controller
         $linesNumber = json_decode($input->linesNumber);
         $station_name = $input->station_name;
 
-        $output = array("serviceStatus" => RatpService::IsServiceUp() ? "Up" : "Down",
-                "stationName" => $station_name,
-                "requestLines" => json_decode($input->linesNumber),
-                "lines" => array());
+        $output = array('serviceStatus' => RatpService::IsServiceUp() ? 'up' : 'down',
+                'stationName' => $station_name,
+                'requestLines' => json_decode($input->linesNumber),
+                'lines' => array());
 
             foreach ($linesNumber as $line) {
-                $output["lines"][$line] = array();
-                array_push($output["lines"][$line], array(
-                        'Aller' => RatpService::GetNextMetroCached(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'A'),
-                        'Retour' => RatpService::GetNextMetroCached(Lines::findFirst("line_number='" . $line . "'")->line_number, $station_name, 'R')
+                $output['lines'][$line] = array();
+                array_push($output['lines'][$line], array(
+                        'a_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'A'),
+                        'r_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'R')
                     )
                 );
             }
