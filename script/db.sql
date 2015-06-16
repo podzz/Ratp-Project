@@ -14,12 +14,11 @@ id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 email VARCHAR(50) NOT NULL,
 password VARCHAR(256) NOT NULL,
 token VARCHAR(256),
+expiration DATETIME,
 offer INT(6) UNSIGNED NOT NULL,
 type INT UNSIGNED NOT NULL,
 FOREIGN KEY(offer) REFERENCES offers(id)
 );
-
-ALTER TABLE `users` ADD `expiration` DATETIME AFTER `id`;
 
 CREATE TABLE line (
 id_line INT(6) UNSIGNED PRIMARY KEY,
@@ -41,8 +40,8 @@ FOREIGN KEY(id_station) REFERENCES station(id_station)
 
 CREATE TABLE comsumption (
 user INT(6) UNSIGNED NOT NULL,
-datestamp date NOT NULL,
-usage SMALLINT NOT NULL,
+datestamp DATE NOT NULL,
+conso INT UNSIGNED NOT NULL,
 FOREIGN KEY (user) REFERENCES users(id)
 );
 

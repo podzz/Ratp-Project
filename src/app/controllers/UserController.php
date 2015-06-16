@@ -31,7 +31,6 @@ class UserController extends \Phalcon\Mvc\Controller
                     $user->email = $email;
 
                     $user->password = $this->security->hash($pass);
-                    $user->token = uniqid();
 
                     $user->offer = $offer;
                     $user->type = 1;

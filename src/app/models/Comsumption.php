@@ -11,21 +11,15 @@ class Comsumption extends \Phalcon\Mvc\Model
 
     /**
      *
-     * @var integer
-     */
-    public $line;
-
-    /**
-     *
-     * @var integer
-     */
-    public $station;
-
-    /**
-     *
      * @var string
      */
-    public $datetimestamp;
+    public $datestamp;
+
+    /**
+     *
+     * @var integer
+     */
+    public $conso;
 
     /**
      * Initialize method for model.
@@ -33,8 +27,6 @@ class Comsumption extends \Phalcon\Mvc\Model
     public function initialize()
     {
         $this->belongsTo('user', 'Users', 'id', array('alias' => 'Users'));
-        $this->belongsTo('line', 'Line', 'id_line', array('alias' => 'Line'));
-        $this->belongsTo('station', 'Station', 'id_station', array('alias' => 'Station'));
     }
 
     /**
