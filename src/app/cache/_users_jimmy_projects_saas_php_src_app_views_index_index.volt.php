@@ -11,9 +11,9 @@
 
     <title>Reste Assis T'es Posé</title>
 
-    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-    <link href="public/css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
           rel='stylesheet' type='text/css'>
@@ -22,6 +22,10 @@
     <style type="text/css">
         *, *::before, *::after {
             box-sizing: unset;
+        }
+
+        .panel {
+            margin-top: 100px;
         }
     </style>
 </head>
@@ -66,12 +70,33 @@
 <div id="headerwrap">
 <?php } ?>
     <div class="container">
-        <div class="row">
-            <?php if ($logged) { ?>
-            <div class="search-container" style="margin-bottom: 10px; text-align: center;">
+    <div class="row">
+        <?php if ($admin) { ?>
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Liste des utilisateurs et leur consommation</h2>
+            </div>
+            <div class="panel-body">
+                <?php if ((!isset($users)) || (empty($users))) { ?>
+                    <h4 style="color: #000000;">Pas d'utilisateur à afficher</h4>
+                <?php } else { ?>
+                <ul>
+                    <?php foreach ($users as $user) { ?>
+                        <li><?php echo $user->mail; ?>&nbsp;:&nbsp;<?php echo $user->conso; ?>/<?php echo $user->maxconso; ?></li>
+                    <?php } ?>
+                </ul>
+                <?php } ?>
+            </div>
+        </div>
+
+
+        <?php } else { ?>
+
+        <?php if ($logged) { ?>
+        <div class="search-container" style="margin-bottom: 10px; text-align: center;">
             <?php } else { ?>
             <div class="search-container col-lg-6" style="display: none;">
-            <?php } ?>
+                <?php } ?>
                 <h1>Recherchez votre station</h1>
                 <form class="form-inline" role="form">
                     <div class="form-group">
@@ -80,174 +105,123 @@
                 </form>
             </div><!-- /col-lg-6 -->
             <?php if ($logged) { ?>
-            <div id="searchResults">
-                <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                <div id="searchResults">
+                    <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                        <table class="table" style="color: white; text-align: center;">
+                            <tr>
+                                <td><img class='station-number' src='img/M_1.png'/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-                <div class="col-md-5 col-md-offset-1" style="background-color: #246593; margin-bottom: 20px;">
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-                <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                            </tr>
+                        </table>
+                    </div><!-- /col-lg-6 -->
+                    <div class="col-md-5 col-md-offset-1" style="background-color: #246593; margin-bottom: 20px;">
+                        <table class="table" style="color: white; text-align: center;">
+                            <tr>
+                                <td><img class='station-number' src='img/M_1.png'/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
+                                </table>
+                            </tr>
+                            <tr>
+                                <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
                                     </tr>
                                     <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
 
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
                                     </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-            </div>
+                            </tr>
+                        </table>
+                    </div><!-- /col-lg-6 -->
+                </div>
             <?php } else { ?>
-            <div class="col-md-5">
-            <img class="img-responsive" src="public/img/ipad-hand.png" alt="" style="display: none;">
-            </div><!-- /col-lg-6 -->
+                <div class="col-md-5">
+                    <img class="img-responsive" src="img/ipad-hand.png" alt="" style="display: none;">
+                </div><!-- /col-lg-6 -->
             <?php } ?>
 
 
-                </div><!-- /row -->
-            </div><!-- /container -->
+        <?php } ?>
 
+        </div><!-- /row -->
+    </div><!-- /container -->
         </div><!-- /headerwrap -->
 
 
@@ -270,6 +244,7 @@
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <?php if (!$admin) { ?>
         <script type="text/javascript">
             $(document).ready(function() {
 
@@ -423,7 +398,7 @@
                 }).data("ui-autocomplete")._renderItem = function(ul, item) {
                     var lines_img = "";
                     item.lines.forEach(function(entry) {
-                        lines_img += "<img class='station-number' src='public/img/M_" + entry + ".png'/>";
+                        lines_img += "<img class='station-number' src='img/M_" + entry + ".png'/>";
                     });
 
                     return $("<li>")
@@ -441,7 +416,7 @@
                 debugger;
 
                 lineInfo.requestLines.forEach(function (line) {
-                    var lineImg = $('<img src=\'public/img/M_' + line + '.png\'>').addClass('station-number');
+                    var lineImg = $('<img src=\'img/M_' + line + '.png\'>').addClass('station-number');
                     var lineIdentity = $('<tr>')
                             .append('<td>')
                             .append($('<td>').append(lineImg));
@@ -459,6 +434,7 @@
 
             }
         </script>
+    <?php } ?>
 </body>
 </html>
 

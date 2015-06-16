@@ -77,11 +77,23 @@ class ApiController extends \Phalcon\Mvc\Controller
         $stations = DatabaseService::linesstations($this->modelsManager->createBuilder());
 
         $rows = array();
-        foreach ($stations as $station) {
+        foreach ($stations as $station)
+        {
             $lines = explode(',', $station->lines_num);
             sort($lines);
             array_push($stationsViewModel, new StationsViewModel($station->station_name, $lines));
         }
         echo json_encode($rows);
+    }
+
+    public function requestTokenAction()
+    {
+        $this->response->setContentType('text/json');
+        $input = $this->request->getJsonRawBody();
+        $mail = json_decode($input->mail);
+
+        $oauth = new Oauthorize();
+        $token = $oauth->getNewToken($mail);
+        echo json_encode(array('token' => $token));
     }
 }

@@ -22,22 +22,47 @@ class IndexController extends ControllerBase
 
             $this->view->email = $this->session->get("email");
             $this->view->token =  $this->session->get("token");
-
+            $this->view->admin = $this->session->get("admin");
             $user = Users::findFirstByEmail($this->session->get("email"));
 
-            //$offerMax = Offers::findFirstById($user->offer);
-            //$this->view->maxQueries = $offerMax;
+            if ($this->session->get("admin"))
+            {
+                $myDate = new \DateTime('-1 day');
+                // Admin mode
+                $usersQueries = $this->modelsManager->createBuilder()
+                    ->from('Users')
+                    ->join('Comsumption', 'c.user = Users.id', 'c')
+                    ->join('Offers', 'Users.offer = o.id', 'o')
+                    ->columns('Users.email as mail, count(c.datetimestamp) as usage, o.max_queries as maxusage')
+                    ->where('c.datetimestamp BETWEEN \'' . $myDate->format('Y-m-d H:i:s') . '\' AND NOW()')
+                    ->getQuery()->execute();
+                $usersData = [];
 
-            /*$userActualQueries = $this->modelsManager->createBuilder()
-                                ->from('Comsumption')
-                                ->where('Comsumption.user = ' . $user->id . ' AND (datetimestamp > NOW() - (INTERVAL 1 DAY))')
-                                ->columns('datetimestamp')
-                                ->getQuery()->execute();*/
+                foreach($usersQueries as $query)
+                {
+                    $userVM = new UserConsoViewModel();
+                    $userVM->mail = $query->mail;
+                    $userVM->conso = $query->usage;
+                    $userVM->maxconso = $query->maxusage;
+                    array_push($usersData, $userVM);
+                }
+                $this->view->users = $usersData;
+            }
+            else
+            {
+                //$offerMax = Offers::findFirstById($user->offer);
+                //$this->view->maxQueries = $offerMax;
 
-            $actualQueries = [];
+                /*$userActualQueries = $this->modelsManager->createBuilder()
+                                    ->from('Comsumption')
+                                    ->where('Comsumption.user = ' . $user->id . ' AND (datetimestamp > NOW() - (INTERVAL 1 DAY))')
+                                    ->columns('datetimestamp')
+                                    ->getQuery()->execute();*/
 
-            $this->view->actualQueries = $actualQueries;
+                $actualQueries = [];
 
+                $this->view->actualQueries = $actualQueries;
+            }
 
         }
     }

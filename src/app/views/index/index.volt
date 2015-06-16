@@ -23,6 +23,10 @@
         *, *::before, *::after {
             box-sizing: unset;
         }
+
+        .panel {
+            margin-top: 100px;
+        }
     </style>
 </head>
 
@@ -66,12 +70,33 @@
 <div id="headerwrap">
 {% endif %}
     <div class="container">
-        <div class="row">
-            {% if logged %}
-            <div class="search-container" style="margin-bottom: 10px; text-align: center;">
+    <div class="row">
+        {% if admin %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h2 class="panel-title">Liste des utilisateurs et leur consommation</h2>
+            </div>
+            <div class="panel-body">
+                {% if (users is not defined) or (users is empty) %}
+                    <h4 style="color: #000000;">Pas d'utilisateur à afficher</h4>
+                {% else %}
+                <ul>
+                    {% for user in users %}
+                        <li>{{ user.mail }}&nbsp;:&nbsp;{{ user.conso }}/{{ user.maxconso }}</li>
+                    {% endfor %}
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+
+
+        {% else %}
+
+        {% if logged %}
+        <div class="search-container" style="margin-bottom: 10px; text-align: center;">
             {% else %}
             <div class="search-container col-lg-6" style="display: none;">
-            {% endif %}
+                {% endif %}
                 <h1>Recherchez votre station</h1>
                 <form class="form-inline" role="form">
                     <div class="form-group">
@@ -80,174 +105,123 @@
                 </form>
             </div><!-- /col-lg-6 -->
             {% if logged %}
-            <div id="searchResults">
-                <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                <div id="searchResults">
+                    <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                        <table class="table" style="color: white; text-align: center;">
+                            <tr>
+                                <td><img class='station-number' src='img/M_1.png'/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-                <div class="col-md-5 col-md-offset-1" style="background-color: #246593; margin-bottom: 20px;">
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
-                                    <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-                <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
+                            </tr>
+                        </table>
+                    </div><!-- /col-lg-6 -->
+                    <div class="col-md-5 col-md-offset-1" style="background-color: #246593; margin-bottom: 20px;">
+                        <table class="table" style="color: white; text-align: center;">
+                            <tr>
+                                <td><img class='station-number' src='img/M_1.png'/>
+                                </td>
+                            </tr>
+                            <tr>
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='img/M_1.png'/>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
                                         </td>
                                     </tr>
+                                </table>
+                            </tr>
+                            <tr>
+                                <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
                                     </tr>
                                     <tr>
-                                        <table class="table" style="color: white; text-align: center;">
-                                            <tr>
-                                                <td><b>1min</b></td><td>3min</td><td>5min</td><td>8min</td>
-                                            </tr>
-                                            <tr>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
 
-                                                </td>
-                                                <td>
-                                                    <h6>La Défense (Grande Arche)</h6>
-                                                </td>
-                                            </tr>
-                                        </table>
+                                        </td>
+                                        <td>
+                                            <h6>La Défense (Grande Arche)</h6>
+                                        </td>
                                     </tr>
                                 </table>
-                            </div><!-- /col-lg-6 -->
-            </div>
+                            </tr>
+                        </table>
+                    </div><!-- /col-lg-6 -->
+                </div>
             {% else %}
-            <div class="col-md-5">
-            <img class="img-responsive" src="img/ipad-hand.png" alt="" style="display: none;">
-            </div><!-- /col-lg-6 -->
+                <div class="col-md-5">
+                    <img class="img-responsive" src="img/ipad-hand.png" alt="" style="display: none;">
+                </div><!-- /col-lg-6 -->
             {% endif %}
 
 
-                </div><!-- /row -->
-            </div><!-- /container -->
+        {% endif %}
 
+        </div><!-- /row -->
+    </div><!-- /container -->
         </div><!-- /headerwrap -->
 
 
@@ -270,6 +244,7 @@
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    {% if not admin %}
         <script type="text/javascript">
             $(document).ready(function() {
 
@@ -459,6 +434,7 @@
 
             }
         </script>
+    {% endif %}
 </body>
 </html>
 
