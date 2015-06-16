@@ -41,12 +41,9 @@ FOREIGN KEY(id_station) REFERENCES station(id_station)
 
 CREATE TABLE comsumption (
 user INT(6) UNSIGNED NOT NULL,
-line INT(6) UNSIGNED NOT NULL,
-station INT(6) UNSIGNED NOT NULL,
-datetimestamp datetime NOT NULL,
-FOREIGN KEY (user) REFERENCES users(id),
-FOREIGN KEY (line) REFERENCES line(id_line),
-FOREIGN KEY (station) REFERENCES station(id_station)
+datestamp date NOT NULL,
+usage SMALLINT NOT NULL,
+FOREIGN KEY (user) REFERENCES users(id)
 );
 
 CREATE TABLE oauth_clients (client_id VARCHAR(80) NOT NULL, client_secret VARCHAR(80) NOT NULL, redirect_uri VARCHAR(2000) NOT NULL, grant_types VARCHAR(80), scope VARCHAR(100), user_id VARCHAR(80), CONSTRAINT clients_client_id_pk PRIMARY KEY (client_id));
