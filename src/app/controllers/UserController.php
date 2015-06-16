@@ -7,12 +7,10 @@ class UserController extends \Phalcon\Mvc\Controller
     public function getTokenAction()
     {
         $oa = new Oauthorize();
-        $oa->getNewToken("testclient", "testpass", "http://fake/");
-    }
-    public function testAction()
-    {
-        $oa = new Oauthorize();
-        $oa->checkToken();
+        //Check if the variable is defined
+        if ($this->session->has("email")) {
+            $oa->getNewToken($this->session->get("email"));
+        }
     }
 
     public function createAction()

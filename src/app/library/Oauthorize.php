@@ -28,21 +28,16 @@ class Oauthorize {
     }
 
     // Returns a new token for the user given in the request head.
-    public function getNewToken()
+    public function getNewToken($email)
     {
         $res = $this->server->handleTokenRequest(OAuth2\Request::createFromGlobals());
         $token = $res->getParameters()["access_token"];
         $expiration = new DateTime();
 
-        $expiration->add(new DateInterval("PT1Y"));
-
-        $userlog = $this->getEmail();
-        if ($userlog) {
-            $db = new PDO($this->dsn, $this->username, $this->password);
-            $db->exec('UPDATE users SET token="'.$token.'", expiration="'.$expiration.'" WHERE email="'.$userlog.'";');
-            return $res->getParameters()["access_token"];
-        }
-        return false;
+        $expiration->add(new DateInterval("P1Y"));
+        $db = new PDO($this->dsn, $this->username, $this->password);
+        $db->exec('UPDATE users SET token="'.$token.'", expiration="'.$expiration.'" WHERE email="'.$email.'";');
+        return $token;
     }
 
     // Insert client in oAuth DB for further authentification
@@ -91,13 +86,6 @@ class Oauthorize {
         return false;
     }
 
-    public function getEmail() {
-        //Check if the variable is defined
-        if ($this->session->has("email")) {
-            return $this->session->get("email");
-        }
-        return false;
-    }
     /**
      * Clean String variable for request String
      *
