@@ -50,10 +50,50 @@ class ApiController extends \Phalcon\Mvc\Controller
         $this->response->setContentType('text/json');
         $input = $this->request->getJsonRawBody();
 
-        $linesNumber = json_decode($input->linesNumber);
-        $station_name = $input->station_name;
+        // Todo : Fix user token
+        $token = 'supertoken';
+        $user = Users::findFirstByToken($token);
 
-        $output = array('serviceStatus' => RatpService::IsServiceUp() ? 'up' : 'down',
+        if ($user == null)
+        {
+            echo json_encode(array("Error", "Token introuvable"));
+        }
+        else
+        {
+            $conso = $this->modelsManager->createBuilder()
+                ->from('Comsumption')
+                ->join('Users', 'u.id = Comsumption.user', 'u')
+                ->join('Offers', 'o.id = u.offer', 'o')
+                ->where('Comsumption.datestamp = DATE(NOW()) AND u.token = \'' . $token . '\'')
+                ->columns('Comsumption.id as id, o.max_queries as maxqueries')
+            ->getQuery()->execute();
+
+            if ($conso == null || count($conso) == 0)
+            {
+                $consom = new Comsumption();
+                $consom->datestamp = (new DateTime())->format('Y-m-d');
+                $consom->user = $user->id;
+                $consom->conso = 1;
+                $consom->save();
+            }
+            else
+            {
+                $max = $conso[0]->maxqueries;
+                $consom = Comsumption::findFirst($conso[0]->id);
+                if ($max <= $consom->conso)
+                {
+                    echo json_encode(array('Error', 'Consommation maximum atteinte (' . $consom->conso . ' / ' . $max . ')'));
+                    return;
+                }
+                $consom->conso += 1;
+                $consom->save();
+            }
+
+
+            $linesNumber = json_decode($input->linesNumber);
+            $station_name = $input->station_name;
+
+            $output = array('serviceStatus' => RatpService::IsServiceUp() ? 'up' : 'down',
                 'stationName' => $station_name,
                 'requestLines' => json_decode($input->linesNumber),
                 'lines' => array());
@@ -67,9 +107,8 @@ class ApiController extends \Phalcon\Mvc\Controller
                 );
             }
 
-        echo json_encode($output);
-
-
+            echo json_encode($output);
+        }
     }
 
     public function stationslinesAction()

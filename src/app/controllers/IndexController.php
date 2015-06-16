@@ -33,8 +33,8 @@ class IndexController extends ControllerBase
                     ->from('Users')
                     ->join('Comsumption', 'c.user = Users.id', 'c')
                     ->join('Offers', 'Users.offer = o.id', 'o')
-                    ->columns('Users.email as mail, count(c.datetimestamp) as usage, o.max_queries as maxusage')
-                    ->where('c.datetimestamp BETWEEN \'' . $myDate->format('Y-m-d H:i:s') . '\' AND NOW()')
+                    ->columns('Users.email as mail, c.conso as conso, o.max_queries as maxusage')
+                    ->where('c.datestamp = DATE(NOW())')
                     ->getQuery()->execute();
                 $usersData = [];
 
@@ -42,7 +42,7 @@ class IndexController extends ControllerBase
                 {
                     $userVM = new UserConsoViewModel();
                     $userVM->mail = $query->mail;
-                    $userVM->conso = $query->usage;
+                    $userVM->conso = $query->conso;
                     $userVM->maxconso = $query->maxusage;
                     array_push($usersData, $userVM);
                 }
