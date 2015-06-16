@@ -6,9 +6,9 @@ return new \Phalcon\Config(array(
     'database' => array(
         'adapter'     => 'Mysql',
         'host'        => '127.0.0.1',
-        'port'        => '3306',
+        'port'        => '8889',
         'username'    => 'root',
-        'password'    => 'Password',
+        'password'    => 'root',
         'dbname'      => 'ratp',
         "options" => array(
             PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
@@ -25,6 +25,6 @@ return new \Phalcon\Config(array(
         'cacheDir'       => APP_PATH . '/app/cache/',
         'servicesDir'    => APP_PATH . '/app/services/',
         'oauth2Dir'      => APP_PATH . '/app/library/OAuth2/',
-        'baseUri'        => '/ratp/'
+        'baseUri'        => '/'
     )
 ));

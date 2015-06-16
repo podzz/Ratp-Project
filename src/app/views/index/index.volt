@@ -11,9 +11,9 @@
 
     <title>Reste Assis T'es Posé</title>
 
-    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
-    <link href="public/css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
           rel='stylesheet' type='text/css'>
@@ -84,7 +84,7 @@
                 <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><img class='station-number' src='img/M_1.png'/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -136,7 +136,7 @@
                 <div class="col-md-5 col-md-offset-1" style="background-color: #246593; margin-bottom: 20px;">
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><img class='station-number' src='img/M_1.png'/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -188,7 +188,7 @@
                 <div class="col-md-5" style="background-color: #246593; margin-bottom: 20px;">
                                 <table class="table" style="color: white; text-align: center;">
                                     <tr>
-                                        <td><img class='station-number' src='public/img/M_1.png'/>
+                                        <td><img class='station-number' src='img/M_1.png'/>
                                         </td>
                                     </tr>
                                     <tr>
@@ -240,7 +240,7 @@
             </div>
             {% else %}
             <div class="col-md-5">
-            <img class="img-responsive" src="public/img/ipad-hand.png" alt="" style="display: none;">
+            <img class="img-responsive" src="img/ipad-hand.png" alt="" style="display: none;">
             </div><!-- /col-lg-6 -->
             {% endif %}
 
@@ -423,7 +423,7 @@
                 }).data("ui-autocomplete")._renderItem = function(ul, item) {
                     var lines_img = "";
                     item.lines.forEach(function(entry) {
-                        lines_img += "<img class='station-number' src='public/img/M_" + entry + ".png'/>";
+                        lines_img += "<img class='station-number' src='img/M_" + entry + ".png'/>";
                     });
 
                     return $("<li>")
@@ -441,7 +441,7 @@
                 debugger;
 
                 lineInfo.requestLines.forEach(function (line) {
-                    var lineImg = $('<img src=\'public/img/M_' + line + '.png\'>').addClass('station-number');
+                    var lineImg = $('<img src=\'img/M_' + line + '.png\'>').addClass('station-number');
                     var lineIdentity = $('<tr>')
                             .append('<td>')
                             .append($('<td>').append(lineImg));

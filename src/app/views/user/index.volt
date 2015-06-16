@@ -11,10 +11,10 @@
     <title>Reste Assis T'es Posé</title>
 
     <!-- Bootstrap core CSS -->
-    <link href="public/css/bootstrap.css" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
 
     <!-- Custom styles for this template -->
-    <link href="public/css/main.css" rel="stylesheet">
+    <link href="css/main.css" rel="stylesheet">
 
     <!-- Fonts from Google Fonts -->
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,900'
