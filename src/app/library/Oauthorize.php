@@ -15,10 +15,6 @@ class Oauthorize {
     private $server;
 
     public function __construct() {
-        // TODO remove for production
-        ini_set('display_errors',1);
-        error_reporting(E_ALL);
-
         Autoloader::register();
 
         $storage = new OAuth2\Storage\Pdo(array('dsn' => $this->dsn, 'username' => $this->username, 'password' => $this->password));
@@ -58,37 +54,6 @@ class Oauthorize {
     public function checkToken()
     {
         return $this->server->verifyResourceRequest(OAuth2\Request::createFromGlobals());
-    }
-
-    public function saveToken($token) {
-        $nowDate = new DateTime();
-
-        $nowDate->add(new DateInterval("PT1Y"));
-
-        $this->session->set("token", $token);
-        $this->session->set("token_exp", $nowDate->format("Y/m/d m:i:s"));
-    }
-
-    public function checkTokenExpiration() {
-        if ($this->session->has("token_exp")) {
-            $expDate = $this->session->get("token_exp");
-            return isExpired($expDate);
-        }
-        return true;
-    }
-
-    function isExpired(DateTime $date)
-    {
-        $now = new DateTime();
-        return $now > $date;
-    }
-
-    public function getToken() {
-        //Check if the variable is defined
-        if ($this->session->has("token")) {
-            return $this->session->get("token");
-        }
-        return false;
     }
 
     /**
