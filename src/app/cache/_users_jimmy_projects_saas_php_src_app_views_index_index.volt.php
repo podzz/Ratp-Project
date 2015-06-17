@@ -104,7 +104,7 @@
         <?php } else { ?>
 
         <?php if ($logged) { ?>
-        <div class="search-container" style="margin-bottom: 10px; text-align: center;">
+        <div class="search-container" style="margin-bottom: 30px; text-align: center;">
             <?php } else { ?>
             <div class="search-container col-lg-6" style="display: none;">
                 <?php } ?>
@@ -474,9 +474,9 @@
                     // the value axis
                     yAxis: {
                         stops: [
-                            [0.1, '#55BF3B'], // green
+                            [0.1, '#DF5353'], // red
                             [0.5, '#DDDF0D'], // yellow
-                            [0.9, '#DF5353'] // red
+                            [0.9, '#55BF3B'] // green
                         ],
                         lineWidth: 0,
                         minorTickInterval: null,
@@ -516,11 +516,11 @@
 
                     series: [{
                         name: 'Quota',
-                        data: [<?php echo $actualConso; ?>],
+                        data: [<?php echo $quota - $actualConso; ?>],
                         dataLabels: {
                             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
                             'white' + '">{y}</span><br/>' +
-                            '<span style="font-size:12px;color:silver">requête(s) effectuée(s) - <?php echo $quota - $actualConso; ?> restante(s)</span></div>'
+                            '<span style="font-size:12px;color:silver">requête(s) restantes(s)</span></div>'
                         },
                         tooltip: {
                             valueSuffix: ' / <?php echo $quota; ?>'

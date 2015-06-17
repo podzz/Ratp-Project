@@ -21,7 +21,7 @@ class IndexController extends ControllerBase
         if ($this->session->has("email")) {
 
             $this->view->email = $this->session->get("email");
-            $this->view->token = "SUPERTOKEN-MODAFUCKA";//$this->session->get("token");
+            $this->view->token = $this->session->get("token");
             $this->view->admin = $this->session->get("admin");
             $user = Users::findFirstByEmail($this->session->get("email"));
 
@@ -30,18 +30,25 @@ class IndexController extends ControllerBase
                 // Admin mode
                 $usersQueries = $this->modelsManager->createBuilder()
                     ->from('Users')
-                    ->join('Comsumption', 'c.user = Users.id', 'c')
                     ->join('Offers', 'Users.offer = o.id', 'o')
-                    ->columns('Users.email as mail, c.conso as conso, o.max_queries as maxusage')
-                    ->where('c.datestamp = DATE(NOW())')
+                    ->columns('Users.id as userId, Users.email as UserEmail, o.max_queries as maxusage')
                     ->getQuery()->execute();
                 $usersData = [];
 
+                $date =  (new DateTime())->format('Y-m-d');
                 foreach($usersQueries as $query)
                 {
                     $userVM = new UserConsoViewModel();
-                    $userVM->mail = $query->mail;
-                    $userVM->conso = $query->conso;
+                    $userVM->mail = $query->UserEmail;
+                    $userConso = Comsumption::query()
+                        ->where("user = :userId: AND datestamp = :datestamp:")
+                        ->bind(array("userId" => $query->userId, "datestamp" => $date))
+                        ->columns('conso')
+                    ->execute();
+                    if ($userConso == null || count($userConso) == 0)
+                        $userVM->conso = 0;
+                    else
+                        $userVM->conso = $userConso[0]->conso;
                     $userVM->maxconso = $query->maxusage;
                     array_push($usersData, $userVM);
                 }

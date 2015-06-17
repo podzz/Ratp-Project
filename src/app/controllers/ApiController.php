@@ -89,7 +89,6 @@ class ApiController extends \Phalcon\Mvc\Controller
                 $consom->save();
             }
 
-
             $linesNumber = json_decode($input->linesNumber);
             $station_name = $input->station_name;
 
