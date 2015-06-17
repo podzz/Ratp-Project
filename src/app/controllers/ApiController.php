@@ -48,65 +48,74 @@ class ApiController extends \Phalcon\Mvc\Controller
     public function nextMetroAction()
     {
         $this->response->setContentType('text/json');
-        $input = $this->request->getJsonRawBody();
+        $inputLines = $this->request->getPost('linesNumber');
+        $inputstation_name = $this->request->getPost('station_name');
 
-        // Todo : Fix user token
-        $token = 'supertoken';
-        $user = Users::findFirstByToken($token);
+       // $input = $this->request->getJsonRawBody();
 
-        if ($user == null)
-        {
-            echo json_encode(array("Error", "Token introuvable"));
-        }
-        else
-        {
-            $conso = $this->modelsManager->createBuilder()
-                ->from('Comsumption')
-                ->join('Users', 'u.id = Comsumption.user', 'u')
-                ->join('Offers', 'o.id = u.offer', 'o')
-                ->where('Comsumption.datestamp = DATE(NOW()) AND u.token = \'' . $token . '\'')
-                ->columns('Comsumption.id as id, o.max_queries as maxqueries')
-            ->getQuery()->execute();
-
-            if ($conso == null || count($conso) == 0)
-            {
-                $consom = new Comsumption();
-                $consom->datestamp = (new DateTime())->format('Y-m-d');
-                $consom->user = $user->id;
-                $consom->conso = 1;
-                $consom->save();
+        try {
+            if (!$this->verifyOauth()) {
+                echo json_encode(array("Error", "Token invalide"));
+                return;
             }
-            else
-            {
-                $max = $conso[0]->maxqueries;
-                $consom = Comsumption::findFirst($conso[0]->id);
-                if ($max <= $consom->conso)
-                {
-                    echo json_encode(array('Error', 'Consommation maximum atteinte (' . $consom->conso . ' / ' . $max . ')'));
-                    return;
+            $token = $this->request->getPost('access_token'); //'58231141e1bd9ba29fd5b07f184df3d75eb156fa';
+            $user = Users::findFirstByToken($token);
+
+            //if ($input == null) {
+            //    echo json_encode(array("Error", "Mauvais paramètres"));
+            //    return;
+            //}
+            if ($user == null) {
+                echo json_encode(array("Error", "Token introuvable"));
+            } else {
+                $conso = $this->modelsManager->createBuilder()
+                    ->from('Comsumption')
+                    ->join('Users', 'u.id = Comsumption.user', 'u')
+                    ->join('Offers', 'o.id = u.offer', 'o')
+                    ->where('Comsumption.datestamp = DATE(NOW()) AND u.token = \'' . $token . '\'')
+                    ->columns('Comsumption.id as id, o.max_queries as maxqueries')
+                    ->getQuery()->execute();
+
+                if ($conso == null || count($conso) == 0) {
+                    $consom = new Comsumption();
+                    $consom->datestamp = (new DateTime())->format('Y-m-d');
+                    $consom->user = $user->id;
+                    $consom->conso = 1;
+                    $consom->save();
+                } else {
+                    $max = $conso[0]->maxqueries;
+                    $consom = Comsumption::findFirst($conso[0]->id);
+                    if ($max <= $consom->conso) {
+                        echo json_encode(array('Error', 'Consommation maximum atteinte (' . $consom->conso . ' / ' . $max . ')'));
+                        return;
+                    }
+                    $consom->conso += 1;
+                    $consom->save();
                 }
-                $consom->conso += 1;
-                $consom->save();
+
+                $linesNumber = json_decode($inputLines);
+                $station_name = $inputstation_name;
+
+                $output = array('serviceStatus' => RatpService::IsServiceUp() ? 'up' : 'down',
+                    'stationName' => $station_name,
+                    'requestLines' => $linesNumber,
+                    'lines' => array());
+
+                foreach ($linesNumber as $line) {
+                    $output['lines'][$line] = array();
+                    array_push($output['lines'][$line], array(
+                            'a_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'A'),
+                            'r_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'R')
+                        )
+                    );
+                }
+
+                echo json_encode($output);
             }
-
-            $linesNumber = json_decode($input->linesNumber);
-            $station_name = $input->station_name;
-
-            $output = array('serviceStatus' => RatpService::IsServiceUp() ? 'up' : 'down',
-                'stationName' => $station_name,
-                'requestLines' => json_decode($input->linesNumber),
-                'lines' => array());
-
-            foreach ($linesNumber as $line) {
-                $output['lines'][$line] = array();
-                array_push($output['lines'][$line], array(
-                        'a_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'A'),
-                        'r_way' => RatpService::GetNextMetroCached(Lines::findFirst('line_number=\'' . $line . '\'')->line_number, $station_name, 'R')
-                    )
-                );
-            }
-
-            echo json_encode($output);
+        }
+        catch (Exception $e)
+        {
+            echo json_encode(array("Error", "Erreur interne"));
         }
     }
 
