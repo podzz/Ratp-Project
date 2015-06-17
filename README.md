@@ -2,9 +2,9 @@
 Service Web proposant les horaires des stations de métro de manière simple et intuitive.
 
 Réalisé par : 
-- Jimmy Lanclume
-- François Boiteux
-- Edouard Durieux
+> - Jimmy Lanclume
+> - François Boiteux
+> - Edouard Durieux
 
 Installation
 ============
@@ -27,5 +27,5 @@ La base de données doit être paramétrée comme ceci :
 >        'dbname'      => 'ratp',
 
 Executez les scripts suivants :
-> mysql -u root -p < script/db.sql
-> mysql -u root -p < script/data.sql
+> - mysql -u root -p < script/db.sql
+> - mysql -u root -p < script/data.sql
