@@ -217,8 +217,7 @@
 
                             linesData += ']';
 
-                            var requestData = '{ "linesNumber":"' + linesData + '",  "station_name":"' + ui.item.label + '" }';
-
+                            var requestData = { access_token : '<?php echo $token; ?>', linesNumber : linesData, station_name : ui.item.label };
                             $.ajax({
                                 type: "POST",
                                 url: "api/nextMetro",

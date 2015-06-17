@@ -31,20 +31,15 @@ class ApiController extends \Phalcon\Mvc\Controller
         $inputLines = $this->request->getPost('linesNumber');
         $inputstation_name = $this->request->getPost('station_name');
 
-       // $input = $this->request->getJsonRawBody();
 
         try {
             if (!$this->verifyOauth()) {
                 echo json_encode(array("Error", "Token invalide"));
                 return;
             }
-            $token = $this->request->getPost('access_token'); //'58231141e1bd9ba29fd5b07f184df3d75eb156fa';
+            $token = $this->request->getPost('access_token');
             $user = Users::findFirstByToken($token);
 
-            //if ($input == null) {
-            //    echo json_encode(array("Error", "Mauvais paramètres"));
-            //    return;
-            //}
             if ($user == null) {
                 echo json_encode(array("Error", "Token introuvable"));
             } else {
