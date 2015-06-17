@@ -1,7 +1,7 @@
 # Reste Assis T'es Posé
 Service Web proposant les horaires des stations de métro de manière simple et intuitive.
 
-Demo : rapt.ml:6969
+Demo : http://rapt.ml:6969
 
 Réalisé par : 
 > - Jimmy Lanclume
@@ -25,7 +25,7 @@ La base de données doit être paramétrée comme ceci :
 >        'host'        => '127.0.0.1',
 >        'port'        => '3306',
 >        'username'    => 'root',
->        'password'    => ' ',
+>        'password'    => '',
 >        'dbname'      => 'ratp',
 
 Executez les scripts suivants :
