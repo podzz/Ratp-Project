@@ -21,7 +21,7 @@ class IndexController extends ControllerBase
         if ($this->session->has("email")) {
 
             $this->view->email = $this->session->get("email");
-            $this->view->token =  $this->session->get("token");
+            $this->view->token = "SUPERTOKEN-MODAFUCKA";//$this->session->get("token");
             $this->view->admin = $this->session->get("admin");
             $user = Users::findFirstByEmail($this->session->get("email"));
 
@@ -59,10 +59,12 @@ class IndexController extends ControllerBase
                     ->getQuery()->execute();
 
                 if ($conso != null && count($conso) > 0)
-                $actualConso = Comsumption::findFirst($conso[0]->id)->conso;
-else
-    $actualConso = 0;
+                    $actualConso = Comsumption::findFirst($conso[0]->id)->conso;
+                else
+                    $actualConso = 0;
                 $this->view->actualConso = $actualConso;
+                $offer = Offers::findFirst($user->offer);
+                $this->view->quota = $offer->max_queries;
             }
 
         }

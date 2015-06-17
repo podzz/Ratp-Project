@@ -58,7 +58,7 @@
                 </ul>
                 {% if not admin %}
                     <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
-                        <li><a id='getToken' href="#">Mon token</a></li>
+                        <li><a id="getToken" href="#">Mon token</a></li>
                     </ul>
                 {% endif %}
                 <ul class="nav navbar-nav navbar-right" style="margin-right: 20px; margin-top: 3px;">
@@ -72,6 +72,7 @@
 <div id="headerwrap" style="margin: 20px auto auto;">
     {% if not admin %}
     <div style="width: inherit; height: inherit; margin: 0 auto; background: transparent;">
+
         <div id="container-speed" style="width: inherit; height: inherit; background: transparent;"></div>
     </div>
     {% endif %}
@@ -252,7 +253,26 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-
+    {% if token is defined %}
+    <div class="modal fade" id="tokenModal" tabindex="-1" role="dialog" aria-labelledby="tokenModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">Votre token</h4>
+                </div>
+                <div class="modal-body">
+                    <p>Vous disposez d'un token unique pour utiliser notre API. Vous pouvez vous en servir de manière illimitée
+                    tant que vous ne dépassez pas la limite fixée par votre souscription.</p>
+                    <p>Votre token est :<br><b>{{ token }}</b></p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
+    {% endif %}
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
@@ -425,6 +445,7 @@
                     $('img').fadeIn('slow');
                 });
 
+                {% if token is defined %}
                 var gaugeOptions = {
 
                     chart: {
@@ -480,13 +501,12 @@
                     }
                 };
 
-                // The speed gauge
                 $('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
                     yAxis: {
                         min: 0,
-                        max: 10000,
+                        max: {{ quota }},
                         title: {
-                            text: 'Quota'
+                            text: ''
                         }
                     },
 
@@ -496,21 +516,24 @@
 
                     series: [{
                         name: 'Quota',
-                        data: [1000],
+                        data: [{{ actualConso }}],
                         dataLabels: {
                             format: '<div style="text-align:center"><span style="font-size:25px;color:' +
-                            /*((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black')*/ 'white' + '">{y}</span><br/>' +
-                            '<span style="font-size:12px;color:silver">requêtes effectuées</span></div>'
+                            'white' + '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver">requête(s) effectuée(s) - {{ quota - actualConso }} restante(s)</span></div>'
                         },
                         tooltip: {
-                            valueSuffix: ' / 10000'
+                            valueSuffix: ' / {{ quota }}'
                         }
                     }]
 
                 }));
-           $('.highcharts-background').attr('fill', '#246593');
+                $('.highcharts-background').attr('fill', '#246593');
                 $('text').css('color', '#FFFFFF').css('fill', '#FFFFFF');
-
+                $('#getToken').bind('click', function() {
+                    $('#tokenModal').modal(true);
+                });
+                {% endif %}
             });
 
 
