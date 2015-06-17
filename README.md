@@ -38,3 +38,65 @@ Exemple d'utilisation de l'API :
 access_token : Votre token utilisateur
 linesNumber : Les lignes de métro auxquelles vous voulez accéder
 station_name : Nom de la station à laquelle vous voulez accéder
+
+
+Exemple de retour de l'API pour la ligne 3 à la station "Opéra"
+
+```
+#!json
+{
+    "serviceStatus": "up",
+    "stationName": "Opéra",
+    "requestLines": [
+        3
+    ],
+    "lines": {
+        "3": [
+            {
+                "a_way": {
+                    "next": [
+                        {
+                            "terminus": "Pont de Levallois Bécon",
+                            "delay": "Train a quai"
+                        },
+                        {
+                            "terminus": "Pont de Levallois Bécon",
+                            "delay": "7 mn"
+                        },
+                        {
+                            "terminus": "Pont de Levallois Bécon",
+                            "delay": "14 mn"
+                        },
+                        {
+                            "terminus": "Pont de Levallois Bécon",
+                            "delay": "22 mn"
+                        }
+                    ]
+                },
+                "r_way": {
+                    "next": [
+                        {
+                            "terminus": "Gallieni",
+                            "delay": "3 mn"
+                        },
+                        {
+                            "terminus": "Gallieni",
+                            "delay": "11 mn"
+                        },
+                        {
+                            "terminus": "Gallieni",
+                            "delay": "19 mn"
+                        },
+                        {
+                            "terminus": "Gallieni",
+                            "delay": "27 mn"
+                        }
+                    ]
+                }
+            }
+        ]
+    }
+}
+
+
+```
