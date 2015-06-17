@@ -11,7 +11,7 @@ use OAuth2\Autoloader;
 class Oauthorize {
     public $dsn      = 'mysql:dbname=ratp;host=127.0.0.1;port=3306';
     public $username = 'root';
-    public $password = 'Password';
+    public $password = '';
     private $server;
 
     public function __construct() {
