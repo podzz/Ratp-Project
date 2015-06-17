@@ -27,6 +27,10 @@
         .panel {
             margin-top: 100px;
         }
+
+        .container {
+            margin-left: 0px;
+        }
     </style>
 </head>
 
@@ -388,13 +392,13 @@
                         var i = 0;
                         lineInfo.lines[line][0].a_way.next.forEach(function(e){
                             if (i == 0) {
-                                $(a_delay).append($('<td>').append($('<h5>').append($('<b>').append(e.delay))));
-                                $(a_location).append($('<td>').append($('<h5>').append($('<b>').append(e.terminus))));
+                                $(a_delay).append($('<td>').append($('<h5 style="color: white;">').append($('<b>').append(e.delay))));
+                                $(a_location).append($('<td>').append($('<h5 style="color: white;">').append($('<b>').append(e.terminus))));
                                 i++;
                             }
                             else {
-                                $(a_delay).append($('<td>').append($('<h5>').append(e.delay)));
-                                $(a_location).append($('<td>').append($('<h5>').append(e.terminus)));
+                                $(a_delay).append($('<td>').append($('<h5 style="color: white;">').append(e.delay)));
+                                $(a_location).append($('<td>').append($('<h5 style="color: white;">').append(e.terminus)));
                             }
                         });
 
@@ -402,13 +406,13 @@
                         $(lineTable).append($(a_way).append($(a_table).append($(a_delay)).append($(a_location))));
                         lineInfo.lines[line][0].r_way.next.forEach(function(e){
                             if (i == 0) {
-                                $(r_delay).append($('<td>').append($('<h5>').append($('<b>').append(e.delay))));
-                                $(r_location).append($('<td>').append($('<h5>').append($('<b>').append(e.terminus))));
+                                $(r_delay).append($('<td>').append($('<h5 style="color: white;">').append($('<b>').append(e.delay))));
+                                $(r_location).append($('<td>').append($('<h5 style="color: white;">').append($('<b>').append(e.terminus))));
                                 i++;
                             }
                             else {
-                                $(r_delay).append($('<td>').append($('<h5>').append(e.delay)));
-                                $(r_location).append($('<td>').append($('<h5>').append(e.terminus)));
+                                $(r_delay).append($('<td>').append($('<h5 style="color: white;">').append(e.delay)));
+                                $(r_location).append($('<td>').append($('<h5 style="color: white;">').append(e.terminus)));
                             }
                         });
                         $(lineTable).append($(r_way).append($(r_table).append($(r_delay)).append($(r_location))));
