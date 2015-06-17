@@ -14,26 +14,6 @@ class ApiController extends \Phalcon\Mvc\Controller
         return $oa->checkToken();
     }
 
-    public function linesAction()
-    {
-        $this->response->setContentType('text/json');
-        $lines = Lines::find();
-        $rows = array();
-        foreach ($lines as $line)
-            array_push($rows, $line);
-        echo json_encode($rows);
-    }
-
-    public function stationsAction()
-    {
-        $this->response->setContentType('text/json');
-        $stations = Stations::find();
-        $rows = array();
-        foreach ($stations as $station)
-            array_push($rows, $station);
-        echo json_encode($rows);
-    }
-
     /**
      * Core route. Pick next_metro for given station
      * @post This route can be use with POST request
@@ -117,20 +97,6 @@ class ApiController extends \Phalcon\Mvc\Controller
         {
             echo json_encode(array("Error", "Erreur interne"));
         }
-    }
-
-    public function stationslinesAction()
-    {
-        $stations = DatabaseService::linesstations($this->modelsManager->createBuilder());
-
-        $rows = array();
-        foreach ($stations as $station)
-        {
-            $lines = explode(',', $station->lines_num);
-            sort($lines);
-            array_push($stationsViewModel, new StationsViewModel($station->station_name, $lines));
-        }
-        echo json_encode($rows);
     }
 
     public function requestTokenAction()
