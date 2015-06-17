@@ -28,7 +28,11 @@ class Users extends \Phalcon\Mvc\Model
      * @var string
      */
     public $token;
-
+    /**
+     *
+     * @var string
+     */
+    public $token_pass;
     /**
      *
      * @var string

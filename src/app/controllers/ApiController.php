@@ -51,7 +51,7 @@ class ApiController extends \Phalcon\Mvc\Controller
         $input = $this->request->getJsonRawBody();
 
         // Todo : Fix user token
-        $token = 'toptop';
+        $token = 'supertoken';
         $user = Users::findFirstByToken($token);
 
         if ($user == null)

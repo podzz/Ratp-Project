@@ -7,13 +7,10 @@ class UserController extends \Phalcon\Mvc\Controller
     public function getTokenAction()
     {
         $oa = new Oauthorize();
-        //Check if the variable is defined
-        if ($this->session->has("email")) {
-            $oa->getNewToken($this->session->get("email"));
-        }
+        echo $oa->getNewToken($_SERVER['PHP_AUTH_USER']);
     }
 
-    public function createAction()
+     public function createAction()
     {
         if ($this->request->isPost()) {
 
@@ -24,23 +21,24 @@ class UserController extends \Phalcon\Mvc\Controller
             if (strlen($email) != 0 && strlen($pass) != 0)
             {
                 $user = Users::findFirstByEmail($email);
-                if ($user) {
+                if ($user)
+                {
                     $this->view->errorMsg = "Ce compte existe déjà";
-                } else {
+                }
+                else
+                {
                     $user = new Users();
                     $user->email = $email;
 
                     $user->password = $this->security->hash($pass);
-                    $user->token = uniqid();
-                    $user->expiration = (new DateTime())->modify('+1 year')->format('Y-m-d');
                     $user->offer = $offer;
                     $user->type = 1;
-                    $user->save();
+                    $user->token_pass = uniqid();
 
-                    // oAuth 2 registration
                     $oa = new Oauthorize();
-                    $oa->registerUser($user->email, $user->password, "");
+                    $oa->registerUser($user->email, $user->token_pass, "");
 
+                    $user->save();
                     $this->response->redirect();
                 }
             }

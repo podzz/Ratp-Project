@@ -23,7 +23,6 @@ class LoginController extends ControllerBase
                 {
                     if ($user->password == $pass)
                     {
-                        $this->session->set("token", $user->token);
                         $this->session->set("email", $email);
                         $this->session->set("admin", true);
 
@@ -38,7 +37,6 @@ class LoginController extends ControllerBase
                 {
                     // Common users
                     if ($this->security->checkHash($pass, $user->password)) {
-                        $this->session->set("token", $user->token);
                         $this->session->set("email", $email);
                         $this->session->set("admin", false);
 

@@ -18,10 +18,10 @@ class IndexController extends ControllerBase
         }
         $this->view->stations = $stationsViewModel;
 
+
         if ($this->session->has("email")) {
 
             $this->view->email = $this->session->get("email");
-            $this->view->token = $this->session->get("token");
             $this->view->admin = $this->session->get("admin");
             $user = Users::findFirstByEmail($this->session->get("email"));
 
@@ -73,6 +73,9 @@ class IndexController extends ControllerBase
                 {
                     $actualConso = 0;
                 }
+
+                $this->view->token = $user->token;
+                $this->view->token_pass = $user->token_pass;
                 $this->view->actualConso = $actualConso;
                 $offer = Offers::findFirst($user->offer);
                 $this->view->quota = $offer->max_queries;
