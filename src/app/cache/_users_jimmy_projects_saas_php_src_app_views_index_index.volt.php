@@ -1,4 +1,4 @@
-<?php $logged = (isset($email)) && (isset($token)); ?>
+<?php $logged = (isset($email)); ?>
 <!DOCTYPE html>
 <html lang="fr" xmlns="http://www.w3.org/1999/html">
 <head>
@@ -56,19 +56,29 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li><?php echo $this->tag->linkTo(array('login/disconnect', 'Déconnexion')); ?></li>
                 </ul>
-                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px; margin-top: 5px;">
+                <?php if (!$admin) { ?>
+                    <ul class="nav navbar-nav navbar-right" style="margin-right: 20px;">
+                        <li><a id='getToken' href="#">Mon token</a></li>
+                    </ul>
+                <?php } ?>
+                <ul class="nav navbar-nav navbar-right" style="margin-right: 20px; margin-top: 3px;">
                     <li><h4><?php echo $email; ?></h4></li>
                 </ul>
-
             <?php } ?>
         </div><!--/.nav-collapse -->
     </div>
 </header>
 <?php if ($logged) { ?>
 <div id="headerwrap" style="margin: 20px auto auto;">
+    <?php if (!$admin) { ?>
+    <div style="width: inherit; height: inherit; margin: 0 auto; background: transparent;">
+        <div id="container-speed" style="width: inherit; height: inherit; background: transparent;"></div>
+    </div>
+    <?php } ?>
 <?php } else { ?>
 <div id="headerwrap">
 <?php } ?>
+
     <div class="container">
     <div class="row">
         <?php if ($admin) { ?>
@@ -211,6 +221,7 @@
                         </table>
                     </div><!-- /col-lg-6 -->
                 </div>
+
             <?php } else { ?>
                 <div class="col-md-5">
                     <img class="img-responsive" src="img/ipad-hand.png" alt="" style="display: none;">
@@ -241,9 +252,13 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
+
         <script src="http://code.jquery.com/jquery-1.10.2.js"></script>
         <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/highcharts-more.js"></script>
+        <script src="http://code.highcharts.com/modules/solid-gauge.js"></script>
     <?php if (!$admin) { ?>
         <script type="text/javascript">
             $(document).ready(function() {
@@ -409,7 +424,95 @@
                 $('.search-container').fadeIn('slow', function() {
                     $('img').fadeIn('slow');
                 });
+
+                var gaugeOptions = {
+
+                    chart: {
+                        type: 'solidgauge'
+                    },
+
+                    title: null,
+
+                    pane: {
+                        center: ['50%', '85%'],
+                        size: '140%',
+                        startAngle: -90,
+                        endAngle: 90,
+                        background: {
+                            backgroundColor: (Highcharts.theme && Highcharts.theme.background2) || '#EEE',
+                            innerRadius: '60%',
+                            outerRadius: '100%',
+                            shape: 'arc'
+                        }
+                    },
+
+                    tooltip: {
+                        enabled: false
+                    },
+
+                    // the value axis
+                    yAxis: {
+                        stops: [
+                            [0.1, '#55BF3B'], // green
+                            [0.5, '#DDDF0D'], // yellow
+                            [0.9, '#DF5353'] // red
+                        ],
+                        lineWidth: 0,
+                        minorTickInterval: null,
+                        tickPixelInterval: 400,
+                        tickWidth: 0,
+                        title: {
+                            y: -70
+                        },
+                        labels: {
+                            y: 16
+                        }
+                    },
+
+                    plotOptions: {
+                        solidgauge: {
+                            dataLabels: {
+                                y: 5,
+                                borderWidth: 0,
+                                useHTML: true
+                            }
+                        }
+                    }
+                };
+
+                // The speed gauge
+                $('#container-speed').highcharts(Highcharts.merge(gaugeOptions, {
+                    yAxis: {
+                        min: 0,
+                        max: 10000,
+                        title: {
+                            text: 'Quota'
+                        }
+                    },
+
+                    credits: {
+                        enabled: false
+                    },
+
+                    series: [{
+                        name: 'Quota',
+                        data: [1000],
+                        dataLabels: {
+                            format: '<div style="text-align:center"><span style="font-size:25px;color:' +
+                            /*((Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black')*/ 'white' + '">{y}</span><br/>' +
+                            '<span style="font-size:12px;color:silver">requêtes effectuées</span></div>'
+                        },
+                        tooltip: {
+                            valueSuffix: ' / 10000'
+                        }
+                    }]
+
+                }));
+           $('.highcharts-background').attr('fill', '#246593');
+                $('text').css('color', '#FFFFFF').css('fill', '#FFFFFF');
+
             });
+
 
             function addLineInfo(lineInfo) {
                 var table = $('<table>').addClass("table").css("color", "white").css("text-align", "center");
@@ -433,6 +536,7 @@
                 return table;
 
             }
+
         </script>
     <?php } ?>
 </body>

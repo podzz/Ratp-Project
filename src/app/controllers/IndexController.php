@@ -18,7 +18,7 @@ class IndexController extends ControllerBase
         }
         $this->view->stations = $stationsViewModel;
 
-        if ($this->session->has("email") && $this->session->has("token")) {
+        if ($this->session->has("email")) {
 
             $this->view->email = $this->session->get("email");
             $this->view->token =  $this->session->get("token");
@@ -50,18 +50,19 @@ class IndexController extends ControllerBase
             }
             else
             {
-                //$offerMax = Offers::findFirstById($user->offer);
-                //$this->view->maxQueries = $offerMax;
+                $conso = $this->modelsManager->createBuilder()
+                    ->from('Comsumption')
+                    ->join('Users', 'u.id = Comsumption.user', 'u')
+                    ->join('Offers', 'o.id = u.offer', 'o')
+                    ->where('Comsumption.datestamp = DATE(NOW()) AND u.email = \'' . $this->session->get("email") . '\'')
+                    ->columns('Comsumption.id as id, o.max_queries as maxqueries')
+                    ->getQuery()->execute();
 
-                /*$userActualQueries = $this->modelsManager->createBuilder()
-                                    ->from('Comsumption')
-                                    ->where('Comsumption.user = ' . $user->id . ' AND (datetimestamp > NOW() - (INTERVAL 1 DAY))')
-                                    ->columns('datetimestamp')
-                                    ->getQuery()->execute();*/
-
-                $actualQueries = [];
-
-                $this->view->actualQueries = $actualQueries;
+                if ($conso != null && count($conso) > 0)
+                $actualConso = Comsumption::findFirst($conso[0]->id)->conso;
+else
+    $actualConso = 0;
+                $this->view->actualConso = $actualConso;
             }
 
         }
