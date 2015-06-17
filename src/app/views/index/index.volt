@@ -265,6 +265,7 @@
                     <p>Vous disposez d'un token unique pour utiliser notre API. Vous pouvez vous en servir de manière illimitée
                     tant que vous ne dépassez pas la limite fixée par votre souscription.</p>
                     <p>Votre token est :<br><b>{{ token }}</b></p>
+                    <p>Il expire le<b>{{ expiration }}</b></p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Retour</button>

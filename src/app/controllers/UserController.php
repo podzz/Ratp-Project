@@ -32,6 +32,7 @@ class UserController extends \Phalcon\Mvc\Controller
 
                     $user->password = $this->security->hash($pass);
                     $user->token = uniqid();
+                    $user->expiration = (new DateTime())->modify('+1 year')->format('Y-m-d');
                     $user->offer = $offer;
                     $user->type = 1;
                     $user->save();

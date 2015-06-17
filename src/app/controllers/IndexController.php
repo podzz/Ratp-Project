@@ -61,16 +61,22 @@ class IndexController extends ControllerBase
                     ->join('Users', 'u.id = Comsumption.user', 'u')
                     ->join('Offers', 'o.id = u.offer', 'o')
                     ->where('Comsumption.datestamp = DATE(NOW()) AND u.email = \'' . $this->session->get("email") . '\'')
-                    ->columns('Comsumption.id as id, o.max_queries as maxqueries')
+                    ->columns('Comsumption.id as id, o.max_queries as maxqueries, u.expiration as expiration')
                     ->getQuery()->execute();
 
                 if ($conso != null && count($conso) > 0)
-                    $actualConso = Comsumption::findFirst($conso[0]->id)->conso;
+                {
+                    $comsum = Comsumption::findFirst($conso[0]->id);
+                    $actualConso = $comsum->conso;
+                }
                 else
+                {
                     $actualConso = 0;
+                }
                 $this->view->actualConso = $actualConso;
                 $offer = Offers::findFirst($user->offer);
                 $this->view->quota = $offer->max_queries;
+                $this->view->expiration = $user->expiration;
             }
 
         }
