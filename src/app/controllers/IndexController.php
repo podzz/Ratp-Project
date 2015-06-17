@@ -27,7 +27,6 @@ class IndexController extends ControllerBase
 
             if ($this->session->get("admin"))
             {
-                $myDate = new \DateTime('-1 day');
                 // Admin mode
                 $usersQueries = $this->modelsManager->createBuilder()
                     ->from('Users')
