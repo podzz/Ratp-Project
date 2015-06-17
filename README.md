@@ -31,3 +31,10 @@ La base de données doit être paramétrée comme ceci :
 Executez les scripts suivants :
 > - mysql -u root -p < script/db.sql
 > - mysql -u root -p < script/data.sql
+
+Exemple d'utilisation de l'API :
+![Capture d’écran 2015-06-17 à 23.21.57.png](https://bitbucket.org/repo/KAGAdq/images/4279627785-Capture%20d%E2%80%99%C3%A9cran%202015-06-17%20%C3%A0%2023.21.57.png)
+
+access_token : Votre token utilisateur
+linesNumber : Les lignes de métro auxquelles vous voulez accéder
+station_name : Nom de la station à laquelle vous voulez accéder
