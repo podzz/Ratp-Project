@@ -1,4 +1,4 @@
-# Reste Assis T'es Posé
+# RATP Project
 Service Web proposant les horaires des stations de métro de manière simple et intuitive.
 
 Demo : http://rapt.ml:6969
